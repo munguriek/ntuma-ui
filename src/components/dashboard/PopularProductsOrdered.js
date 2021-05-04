@@ -78,7 +78,7 @@ const TrafficByDevice = (props) => {
 
   return (
     <Card {...props}>
-      <CardHeader title="Popular Products" />
+      <CardHeader title="Traffic by Device" />
       <Divider />
       <CardContent>
         <Box

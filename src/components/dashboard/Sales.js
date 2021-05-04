@@ -98,7 +98,7 @@ const Sales = (props) => {
             Last 7 days
           </Button>
         )}
-        title="Latest Sales"
+        title="Shopping Transactions"
       />
       <Divider />
       <CardContent>

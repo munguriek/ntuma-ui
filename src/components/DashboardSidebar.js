@@ -23,7 +23,7 @@ import {
 import NavItem from './NavItem';
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
+  avatar: '/static/images/avatars/useravatar.png',
   jobTitle: 'Admin',
   name: 'Kamugisha Liz'
 };
@@ -42,7 +42,7 @@ const items = [
   {
     href: '/app/products',
     icon: ShoppingBagIcon,
-    title: 'Products'
+    title: 'Markets'
   },
   {
     href: '/app/account',

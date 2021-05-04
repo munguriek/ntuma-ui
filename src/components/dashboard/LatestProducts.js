@@ -18,7 +18,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 const products = [
   {
     id: uuid(),
-    name: 'Dropbox',
+    name: 'Nakasero',
     imageUrl: '/static/images/products/product_1.png',
     updatedAt: moment().subtract(2, 'hours')
   },
@@ -52,7 +52,7 @@ const LatestProducts = (props) => (
   <Card {...props}>
     <CardHeader
       subtitle={`${products.length} in total`}
-      title="Latest Products"
+      title="Available Markets"
     />
     <Divider />
     <List>
