@@ -10,7 +10,8 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  ListItemText
+  ListItemText,
+  // Typography
 } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -18,41 +19,43 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 const products = [
   {
     id: uuid(),
-    name: 'Nakasero',
-    imageUrl: '/static/images/products/product_1.png',
-    updatedAt: moment().subtract(2, 'hours')
+    name: 'Tomatoes',
+    imageUrl: '/static/images/products/tomato.jpg',
+    updatedAt: moment().subtract(2, 'hours'),
+    price: 3500,
+    qty: 'Kg'
   },
   {
     id: uuid(),
-    name: 'Medium Corporation',
-    imageUrl: '/static/images/products/product_2.png',
-    updatedAt: moment().subtract(2, 'hours')
+    name: 'Onions',
+    imageUrl: '/static/images/products/onion.png',
+    updatedAt: moment().subtract(2, 'hours'),
+    price: 3000,
+    qty: 'Kg'
   },
   {
     id: uuid(),
-    name: 'Slack',
-    imageUrl: '/static/images/products/product_3.png',
-    updatedAt: moment().subtract(3, 'hours')
+    name: 'Spinach',
+    imageUrl: '/static/images/products/spinach.jpg',
+    updatedAt: moment().subtract(3, 'hours'),
+    price: 2000,
+    qty: 'Bunch'
   },
   {
     id: uuid(),
-    name: 'Lyft',
-    imageUrl: '/static/images/products/product_4.png',
-    updatedAt: moment().subtract(5, 'hours')
+    name: 'Pineapple',
+    imageUrl: '/static/images/products/pineapple.png',
+    updatedAt: moment().subtract(5, 'hours'),
+    price: 6000,
+    qty: 'Piece'
   },
-  {
-    id: uuid(),
-    name: 'GitHub',
-    imageUrl: '/static/images/products/product_5.png',
-    updatedAt: moment().subtract(9, 'hours')
-  }
 ];
 
-const LatestProducts = (props) => (
+const ProductPriceList = (props) => (
   <Card {...props}>
     <CardHeader
       subtitle={`${products.length} in total`}
-      title="Available Markets"
+      title="Product Price List"
     />
     <Divider />
     <List>
@@ -73,7 +76,23 @@ const LatestProducts = (props) => (
           </ListItemAvatar>
           <ListItemText
             primary={product.name}
-            secondary={`Updated ${product.updatedAt.fromNow()}`}
+            secondary={(
+              <div>
+                <div>
+                  {product.price}
+                  {' '}
+                  ugx per
+                  {' '}
+                  {product.qty}
+                </div>
+                <div>
+                  Updated
+                  {' '}
+                  {product.updatedAt.fromNow()}
+                </div>
+              </div>
+            )}
+
           />
           <IconButton
             edge="end"
@@ -104,4 +123,4 @@ const LatestProducts = (props) => (
   </Card>
 );
 
-export default LatestProducts;
+export default ProductPriceList;

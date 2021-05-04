@@ -4,13 +4,14 @@ import {
   Card,
   CardContent,
   Grid,
-  Typography
+  Typography,
+  Button
 } from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import MoneyIcon from '@material-ui/icons/Money';
-import { red } from '@material-ui/core/colors';
+import { orange, green } from '@material-ui/core/colors';
+import Icon from '@mdi/react';
+import { mdiAccountStar } from '@mdi/js';
 
-const Budget = (props) => (
+const Assistants = (props) => (
   <Card
     sx={{ height: '100%' }}
     {...props}
@@ -22,31 +23,39 @@ const Budget = (props) => (
         sx={{ justifyContent: 'space-between' }}
       >
         <Grid item>
+          <Avatar
+            sx={{
+              backgroundColor: orange[600],
+              color: 'white',
+              height: 56,
+              width: 56
+            }}
+          >
+            <Icon
+              path={mdiAccountStar}
+              size={1.3}
+              color="white"
+            >
+              <mdiAccountStar />
+            </Icon>
+          </Avatar>
+        </Grid>
+        <Grid item>
           <Typography
             color="textSecondary"
             gutterBottom
             variant="h6"
           >
-            ASSISTANTS
+            MARKET ASSISTANTS
           </Typography>
           <Typography
             color="textPrimary"
             variant="h3"
           >
-            500
+            50
           </Typography>
         </Grid>
-        <Grid item>
-          <Avatar
-            sx={{
-              backgroundColor: red[600],
-              height: 56,
-              width: 56
-            }}
-          >
-            <MoneyIcon />
-          </Avatar>
-        </Grid>
+
       </Grid>
       <Box
         sx={{
@@ -55,7 +64,7 @@ const Budget = (props) => (
           alignItems: 'center'
         }}
       >
-        <ArrowDownwardIcon sx={{ color: red[900] }} />
+        {/* <ArrowDownwardIcon sx={{ color: red[900] }} />
         <Typography
           sx={{
             color: red[900],
@@ -70,10 +79,19 @@ const Budget = (props) => (
           variant="caption"
         >
           Since last month
-        </Typography>
+        </Typography> */}
+        <Button
+          variant="contained"
+          fullWidth
+          style={{
+            backgroundColor: green[600]
+          }}
+        >
+          View Assistants List
+        </Button>
       </Box>
     </CardContent>
   </Card>
 );
 
-export default Budget;
+export default Assistants;

@@ -8,11 +8,13 @@ import {
   Button
 } from '@material-ui/core';
 import { orange, green } from '@material-ui/core/colors';
-import Icon from '@mdi/react';
-import { mdiHomeAccount } from '@mdi/js';
+import StoreIcon from '@material-ui/icons/Store';
 
-const TotalCustomers = (props) => (
-  <Card {...props}>
+const Markets = (props) => (
+  <Card
+    sx={{ height: '100%' }}
+    {...props}
+  >
     <CardContent>
       <Grid
         container
@@ -23,18 +25,14 @@ const TotalCustomers = (props) => (
           <Avatar
             sx={{
               backgroundColor: orange[600],
-              color: 'white',
               height: 56,
               width: 56
             }}
           >
-            <Icon
-              path={mdiHomeAccount}
-              size={1.5}
-              color="white"
-            >
-              <mdiHomeAccount />
-            </Icon>
+            <StoreIcon
+              fontSize="large"
+              style={{ color: 'white' }}
+            />
           </Avatar>
         </Grid>
         <Grid item>
@@ -43,40 +41,16 @@ const TotalCustomers = (props) => (
             gutterBottom
             variant="h6"
           >
-            TOTAL CUSTOMERS
+            AVAILABLE MARKETS
           </Typography>
           <Typography
             color="textPrimary"
             variant="h3"
           >
-            100
+            4
           </Typography>
         </Grid>
       </Grid>
-      {/* <Box
-        sx={{
-          alignItems: 'center',
-          display: 'flex',
-          pt: 1
-        }}
-      >
-        <ArrowUpwardIcon sx={{ color: green[600] }} />
-        <Typography
-          variant="body2"
-          sx={{
-            color: green[600],
-            mr: 1
-          }}
-        >
-          16%
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="caption"
-        >
-          Since last month
-        </Typography>
-      </Box> */}
       <Box
         sx={{
           alignItems: 'center',
@@ -91,11 +65,11 @@ const TotalCustomers = (props) => (
             backgroundColor: green[600]
           }}
         >
-          View Customers List
+          View Markets List
         </Button>
       </Box>
     </CardContent>
   </Card>
 );
 
-export default TotalCustomers;
+export default Markets;
