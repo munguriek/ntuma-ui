@@ -7,10 +7,10 @@ import {
   CardHeader,
   Divider,
   useTheme,
-  colors
+  colors,
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+// import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 const Sales = (props) => {
   const theme = useTheme();
@@ -18,17 +18,17 @@ const Sales = (props) => {
   const data = {
     datasets: [
       {
-        backgroundColor: colors.indigo[500],
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year'
+        backgroundColor: colors.red[300],
+        data: [18000, 5000, 19000, 27000, 29000],
+        label: 'Nakasero'
       },
       {
-        backgroundColor: colors.grey[200],
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year'
+        backgroundColor: colors.blue[300],
+        data: [11000, 20000, 12000, 29000, 30000],
+        label: 'Gabba'
       }
     ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug']
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   };
 
   const options = {
@@ -95,10 +95,10 @@ const Sales = (props) => {
             size="small"
             variant="text"
           >
-            Last 7 days
+            2021
           </Button>
         )}
-        title="Shopping Transactions"
+        title="Market Sales (Ugx)"
       />
       <Divider />
       <CardContent>
@@ -122,14 +122,14 @@ const Sales = (props) => {
           p: 2
         }}
       >
-        <Button
+        {/* <Button
           color="primary"
           endIcon={<ArrowRightIcon />}
           size="small"
           variant="text"
         >
-          Overview
-        </Button>
+          Select Year
+        </Button> */}
       </Box>
     </Card>
   );

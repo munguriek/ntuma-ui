@@ -9,28 +9,26 @@ import {
   colors,
   useTheme
 } from '@material-ui/core';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import PhoneIcon from '@material-ui/icons/Phone';
-import TabletIcon from '@material-ui/icons/Tablet';
 
-const TrafficByDevice = (props) => {
+const PopularProducts = (props) => {
   const theme = useTheme();
 
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [57, 10, 20, 13],
         backgroundColor: [
-          colors.indigo[500],
+          colors.green[500],
           colors.red[600],
-          colors.orange[600]
+          colors.orange[600],
+          colors.blue[600]
         ],
         borderWidth: 8,
         borderColor: colors.common.white,
         hoverBorderColor: colors.common.white
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['Vegetables', 'Meat', 'Fruit', 'Fish']
   };
 
   const options = {
@@ -55,24 +53,26 @@ const TrafficByDevice = (props) => {
     }
   };
 
-  const devices = [
+  const products = [
     {
-      title: 'Desktop',
-      value: 63,
-      icon: LaptopMacIcon,
-      color: colors.indigo[500]
+      title: 'Vegetables',
+      value: 57,
+      color: colors.green[500]
     },
     {
-      title: 'Tablet',
-      value: 15,
-      icon: TabletIcon,
+      title: 'Meat',
+      value: 10,
       color: colors.red[600]
     },
     {
-      title: 'Mobile',
-      value: 23,
-      icon: PhoneIcon,
+      title: 'Fruit',
+      value: 20,
       color: colors.orange[600]
+    },
+    {
+      title: 'Fish',
+      value: 13,
+      color: colors.blue[600]
     }
   ];
 
@@ -99,9 +99,8 @@ const TrafficByDevice = (props) => {
             pt: 2
           }}
         >
-          {devices.map(({
+          {products.map(({
             color,
-            icon: Icon,
             title,
             value
           }) => (
@@ -112,7 +111,6 @@ const TrafficByDevice = (props) => {
                 textAlign: 'center'
               }}
             >
-              <Icon color="action" />
               <Typography
                 color="textPrimary"
                 variant="body1"
@@ -134,4 +132,4 @@ const TrafficByDevice = (props) => {
   );
 };
 
-export default TrafficByDevice;
+export default PopularProducts;

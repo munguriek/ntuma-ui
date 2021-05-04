@@ -7,7 +7,8 @@ import {
   Box,
   Hidden,
   IconButton,
-  Toolbar
+  Toolbar,
+  Typography
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
@@ -26,6 +27,10 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
         <RouterLink to="/">
           <Logo />
         </RouterLink>
+        <Typography>
+          {' '}
+          <h3>Ntuma Admin Dashboard</h3>
+        </Typography>
         <Box sx={{ flexGrow: 1 }} />
         <Hidden lgDown>
           <IconButton color="inherit">

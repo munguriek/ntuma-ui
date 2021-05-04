@@ -2,7 +2,7 @@ const Logo = (props) => (
   <img
     alt="Logo"
     src="/static/images/NtumaLogoWhiteBag.png"
-    width="50"
+    width="70"
     {...props}
   />
 );

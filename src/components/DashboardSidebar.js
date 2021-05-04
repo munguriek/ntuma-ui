@@ -23,9 +23,9 @@ import {
 import NavItem from './NavItem';
 
 const user = {
-  avatar: '/static/images/avatars/useravatar.png',
-  jobTitle: 'Admin',
-  name: 'Kamugisha Liz'
+  avatar: '/static/images/avatars/admin_avatar.png',
+  jobTitle: 'System Admin',
+  name: 'Obed Mogeni'
 };
 
 const items = [

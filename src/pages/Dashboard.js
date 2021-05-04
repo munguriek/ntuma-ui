@@ -6,12 +6,12 @@ import {
 } from '@material-ui/core';
 import Assistants from 'src/components/dashboard//Assistants';
 import LatestOrders from 'src/components/dashboard//LatestOrders';
-import LatestProducts from 'src/components/dashboard//LatestProducts';
+import ProductPriceList from 'src/components/dashboard/ProductPriceList';
 import Sales from 'src/components/dashboard//Sales';
-import TasksProgress from 'src/components/dashboard//TasksProgress';
+import Markets from 'src/components/dashboard//Markets';
 import TotalCustomers from 'src/components/dashboard//TotalCustomers';
-import TotalProfit from 'src/components/dashboard//TotalProfit';
-import TrafficByDevice from 'src/components/dashboard//TrafficByDevice';
+import BestAssisstant from 'src/components/dashboard/BestAssistant';
+import PopularProducts from 'src/components/dashboard/PopularProducts';
 
 const Dashboard = () => (
   <>
@@ -37,15 +37,6 @@ const Dashboard = () => (
             xl={3}
             xs={12}
           >
-            <Assistants />
-          </Grid>
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
             <TotalCustomers />
           </Grid>
           <Grid
@@ -55,7 +46,7 @@ const Dashboard = () => (
             xl={3}
             xs={12}
           >
-            <TasksProgress />
+            <Assistants />
           </Grid>
           <Grid
             item
@@ -64,7 +55,16 @@ const Dashboard = () => (
             xl={3}
             xs={12}
           >
-            <TotalProfit sx={{ height: '100%' }} />
+            <Markets />
+          </Grid>
+          <Grid
+            item
+            lg={3}
+            sm={6}
+            xl={3}
+            xs={12}
+          >
+            <BestAssisstant sx={{ height: '100%' }} />
           </Grid>
           <Grid
             item
@@ -82,7 +82,7 @@ const Dashboard = () => (
             xl={3}
             xs={12}
           >
-            <TrafficByDevice sx={{ height: '100%' }} />
+            <PopularProducts sx={{ height: '100%' }} />
           </Grid>
           <Grid
             item
@@ -91,7 +91,7 @@ const Dashboard = () => (
             xl={3}
             xs={12}
           >
-            <LatestProducts sx={{ height: '100%' }} />
+            <ProductPriceList sx={{ height: '100%' }} />
           </Grid>
           <Grid
             item
