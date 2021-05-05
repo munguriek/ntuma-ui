@@ -10,7 +10,7 @@ import {
   Button
 } from '@material-ui/core';
 
-const ProductCard = ({ product, ...rest }) => (
+const MarketCard = ({ market, ...rest }) => (
   <Card
     sx={{
       display: 'flex',
@@ -28,8 +28,8 @@ const ProductCard = ({ product, ...rest }) => (
         }}
       >
         <Avatar
-          alt="Product"
-          src={product.media}
+          alt="Market"
+          src={market.media}
           variant="square"
         />
       </Box>
@@ -39,14 +39,14 @@ const ProductCard = ({ product, ...rest }) => (
         gutterBottom
         variant="h4"
       >
-        {product.title}
+        {market.title}
       </Typography>
       <Typography
         align="center"
         color="textPrimary"
         variant="body1"
       >
-        {product.description}
+        {market.description}
       </Typography>
     </CardContent>
     <Box sx={{ flexGrow: 1 }} />
@@ -70,7 +70,7 @@ const ProductCard = ({ product, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            View Product
+            View Market
           </Button>
         </Grid>
         <Grid
@@ -86,7 +86,7 @@ const ProductCard = ({ product, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            UnStock
+            Deactivate
           </Button>
         </Grid>
       </Grid>
@@ -94,8 +94,8 @@ const ProductCard = ({ product, ...rest }) => (
   </Card>
 );
 
-ProductCard.propTypes = {
-  product: PropTypes.object.isRequired
+MarketCard.propTypes = {
+  market: PropTypes.object.isRequired
 };
 
-export default ProductCard;
+export default MarketCard;

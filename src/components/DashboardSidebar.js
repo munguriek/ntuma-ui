@@ -35,12 +35,22 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/app/customers',
-    icon: UsersIcon,
+    href: '/app/assistants',
+    icon: UserIcon,
     title: 'Assistants'
   },
   {
+    href: '/app/customers',
+    icon: UsersIcon,
+    title: 'Buyers'
+  },
+  {
     href: '/app/products',
+    icon: ShoppingBagIcon,
+    title: 'Products'
+  },
+  {
+    href: '/app/markets',
     icon: ShoppingBagIcon,
     title: 'Markets'
   },
