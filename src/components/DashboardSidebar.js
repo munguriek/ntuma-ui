@@ -11,15 +11,13 @@ import {
   Typography
 } from '@material-ui/core';
 import {
-  AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
-  Lock as LockIcon,
   Settings as SettingsIcon,
   ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
-  UserPlus as UserPlusIcon,
   Users as UsersIcon
 } from 'react-feather';
+import StoreIcon from '@material-ui/icons/Store';
 import NavItem from './NavItem';
 
 const user = {
@@ -42,7 +40,7 @@ const items = [
   {
     href: '/app/customers',
     icon: UsersIcon,
-    title: 'Buyers'
+    title: 'Customers'
   },
   {
     href: '/app/products',
@@ -51,7 +49,7 @@ const items = [
   },
   {
     href: '/app/markets',
-    icon: ShoppingBagIcon,
+    icon: StoreIcon,
     title: 'Markets'
   },
   {
@@ -63,21 +61,6 @@ const items = [
     href: '/app/settings',
     icon: SettingsIcon,
     title: 'Settings'
-  },
-  {
-    href: '/login',
-    icon: LockIcon,
-    title: 'Login'
-  },
-  {
-    href: '/register',
-    icon: UserPlusIcon,
-    title: 'Register'
-  },
-  {
-    href: '/404',
-    icon: AlertCircleIcon,
-    title: 'Error'
   }
 ];
 

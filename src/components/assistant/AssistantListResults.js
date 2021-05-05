@@ -87,7 +87,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                   Email
                 </TableCell>
                 <TableCell>
-                  Location
+                  Market
                 </TableCell>
                 <TableCell>
                   Phone
