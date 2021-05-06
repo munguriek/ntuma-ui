@@ -9,174 +9,194 @@ import {
   Grid,
   Link,
   TextField,
-  Typography
+  Typography,
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
+// import FacebookIcon from 'src/icons/Facebook';
+// import GoogleIcon from 'src/icons/Google';
 
 const Login = () => {
   const navigate = useNavigate();
+  const picture = {
+    imageUrl: '/static/images/loginPagePic.jpg',
+    name: 'Shop with Ntuma'
+  };
 
   return (
     <>
+
       <Helmet>
         <title>Login | Ntuma</title>
       </Helmet>
-      <Box
-        sx={{
-          backgroundColor: 'background.default',
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%',
-          justifyContent: 'center'
-        }}
-      >
-        <Container maxWidth="sm">
-          <Formik
-            initialValues={{
-              email: 'demo@devias.io',
-              password: 'Password123'
+      <Grid container spacing={0}>
+
+        <Grid item xs={6}>
+          <img
+            src={picture.imageUrl}
+            alt={picture.name}
+            style={{
+              height: 725,
+              width: 720
             }}
-            validationSchema={Yup.object().shape({
-              email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-              password: Yup.string().max(255).required('Password is required')
-            })}
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <Box
+            sx={{
+              backgroundColor: 'white',
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+              justifyContent: 'center'
             }}
           >
-            {({
-              errors,
-              handleBlur,
-              handleChange,
-              handleSubmit,
-              isSubmitting,
-              touched,
-              values
-            }) => (
-              <form onSubmit={handleSubmit}>
-                <Box sx={{ mb: 3 }}>
-                  <Typography
-                    color="textPrimary"
-                    variant="h2"
-                  >
-                    Sign in
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    gutterBottom
-                    variant="body2"
-                  >
-                    Sign in on the internal platform
-                  </Typography>
-                </Box>
-                <Grid
-                  container
-                  spacing={3}
-                >
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Button
-                      color="primary"
-                      fullWidth
-                      startIcon={<FacebookIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
+            <Container maxWidth="sm">
+              <Formik
+                initialValues={{
+                  email: 'admin@ntuma.com',
+                  password: 'password123'
+                }}
+                validationSchema={Yup.object().shape({
+                  email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+                  password: Yup.string().max(255).required('Password is required')
+                })}
+                onSubmit={() => {
+                  navigate('/app/dashboard', { replace: true });
+                }}
+              >
+                {({
+                  errors,
+                  handleBlur,
+                  handleChange,
+                  handleSubmit,
+                  isSubmitting,
+                  touched,
+                  values
+                }) => (
+                  <form onSubmit={handleSubmit}>
+                    <Box sx={{ mb: 3 }}>
+                      <Typography
+                        color="textPrimary"
+                        variant="h2"
+                      >
+                        Welcome to Ntuma
+                      </Typography>
+                      <Typography
+                        color="textSecondary"
+                        gutterBottom
+                        variant="body2"
+                      >
+                        Please login to access the Ntuma Admin Dashboard
+                      </Typography>
+                    </Box>
+                    {/* <Grid
+                      container
+                      spacing={3}
                     >
-                      Login with Facebook
-                    </Button>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Button
-                      fullWidth
-                      startIcon={<GoogleIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
+                      <Grid
+                        item
+                        xs={12}
+                        md={6}
+                      >
+                        <Button
+                          color="primary"
+                          fullWidth
+                          startIcon={<FacebookIcon />}
+                          onClick={handleSubmit}
+                          size="large"
+                          variant="contained"
+                        >
+                          Login with Facebook
+                        </Button>
+                      </Grid>
+                      <Grid
+                        item
+                        xs={12}
+                        md={6}
+                      >
+                        <Button
+                          fullWidth
+                          startIcon={<GoogleIcon />}
+                          onClick={handleSubmit}
+                          size="large"
+                          variant="contained"
+                        >
+                          Login with Google
+                        </Button>
+                      </Grid>
+                    </Grid> */}
+                    <Box
+                      sx={{
+                        pb: 1,
+                        pt: 3
+                      }}
                     >
-                      Login with Google
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Box
-                  sx={{
-                    pb: 1,
-                    pt: 3
-                  }}
-                >
-                  <Typography
-                    align="center"
-                    color="textSecondary"
-                    variant="body1"
-                  >
-                    or login with email address
-                  </Typography>
-                </Box>
-                <TextField
-                  error={Boolean(touched.email && errors.email)}
-                  fullWidth
-                  helperText={touched.email && errors.email}
-                  label="Email Address"
-                  margin="normal"
-                  name="email"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  type="email"
-                  value={values.email}
-                  variant="outlined"
-                />
-                <TextField
-                  error={Boolean(touched.password && errors.password)}
-                  fullWidth
-                  helperText={touched.password && errors.password}
-                  label="Password"
-                  margin="normal"
-                  name="password"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  type="password"
-                  value={values.password}
-                  variant="outlined"
-                />
-                <Box sx={{ py: 2 }}>
-                  <Button
-                    color="primary"
-                    disabled={isSubmitting}
-                    fullWidth
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                  >
-                    Sign in now
-                  </Button>
-                </Box>
-                <Typography
-                  color="textSecondary"
-                  variant="body1"
-                >
-                  Don&apos;t have an account?
-                  {' '}
-                  <Link
-                    component={RouterLink}
-                    to="/register"
-                    variant="h6"
-                  >
-                    Sign up
-                  </Link>
-                </Typography>
-              </form>
-            )}
-          </Formik>
-        </Container>
-      </Box>
+                      {/* <Typography
+                        align="center"
+                        color="textSecondary"
+                        variant="body1"
+                      >
+                        or login with email address
+                      </Typography> */}
+                    </Box>
+                    <TextField
+                      error={Boolean(touched.email && errors.email)}
+                      fullWidth
+                      helperText={touched.email && errors.email}
+                      label="Email Address"
+                      margin="normal"
+                      name="email"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      type="email"
+                      value={values.email}
+                      variant="outlined"
+                    />
+                    <TextField
+                      error={Boolean(touched.password && errors.password)}
+                      fullWidth
+                      helperText={touched.password && errors.password}
+                      label="Password"
+                      margin="normal"
+                      name="password"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      type="password"
+                      value={values.password}
+                      variant="outlined"
+                    />
+                    <Box sx={{ py: 2 }}>
+                      <Button
+                        color="primary"
+                        disabled={isSubmitting}
+                        fullWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                      >
+                        Sign in now
+                      </Button>
+                    </Box>
+                    <Typography
+                      color="textSecondary"
+                      variant="body1"
+                    >
+                      Don&apos;t have an account?
+                      {' '}
+                      <Link
+                        component={RouterLink}
+                        to="/register"
+                        variant="h6"
+                      >
+                        Sign up
+                      </Link>
+                    </Typography>
+                  </form>
+                )}
+              </Formik>
+            </Container>
+          </Box>
+        </Grid>
+      </Grid>
     </>
   );
 };
