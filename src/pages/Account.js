@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet';
 import {
   Box,
@@ -6,8 +7,19 @@ import {
 } from '@material-ui/core';
 import AccountProfile from 'src/components/account/AccountProfile';
 import AccountProfileDetails from 'src/components/account/AccountProfileDetails';
+import axios from 'axios';
 
-const Account = () => (
+const Account = () => {
+  // putting an empty array to give it an initial value
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:1200/register')
+    .then((res) => {
+      console.log(res)
+      setUser(res.data)
+    })
+  }, [])
+return (
   <>
     <Helmet>
       <title>Account | Ntuma Admin</title>
@@ -44,6 +56,7 @@ const Account = () => (
       </Container>
     </Box>
   </>
-);
+)
+    };
 
 export default Account;
