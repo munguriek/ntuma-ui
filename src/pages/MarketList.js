@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import MarketListToolbar from 'src/components/market//MarketListToolbar';
 import MarketCard from 'src/components/market//MarketCard';
-import markets from 'src/__mocks__/markets';
+// import markets from 'src/__mocks__/markets';
 import axios from 'axios';
 
 const MarketList = () => {
@@ -33,7 +33,7 @@ const MarketList = () => {
       }}
     >
       <Container maxWidth={false}>
-        <MarketListToolbar />
+        <MarketListToolbar/>
         <Box sx={{ pt: 3 }}>
           <Grid
             container
