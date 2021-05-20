@@ -10,29 +10,27 @@ import {
   TextField
 } from '@material-ui/core';
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
+// const states = [
+//   {
+//     value: 'alabama',
+//     label: 'Alabama'
+//   },
+//   {
+//     value: 'new-york',
+//     label: 'New York'
+//   },
+//   {
+//     value: 'san-francisco',
+//     label: 'San Francisco'
+//   }
+// ];
 
 const AccountProfileDetails = (props) => {
   const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
+    firstName: 'Obed',
+    lastName: 'Mogeni',
     email: 'demo@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
+    phone: '077123123'
   });
 
   const handleChange = (event) => {
@@ -51,7 +49,7 @@ const AccountProfileDetails = (props) => {
       <Card>
         <CardHeader
           subheader="The information can be edited"
-          title="Profile"
+          title="Admin Profile"
         />
         <Divider />
         <CardContent>
@@ -120,7 +118,7 @@ const AccountProfileDetails = (props) => {
                 variant="outlined"
               />
             </Grid>
-            <Grid
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -134,8 +132,8 @@ const AccountProfileDetails = (props) => {
                 value={values.country}
                 variant="outlined"
               />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -160,7 +158,7 @@ const AccountProfileDetails = (props) => {
                   </option>
                 ))}
               </TextField>
-            </Grid>
+            </Grid> */}
           </Grid>
         </CardContent>
         <Divider />

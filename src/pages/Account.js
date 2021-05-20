@@ -5,7 +5,7 @@ import {
   Container,
   Grid
 } from '@material-ui/core';
-import AccountProfile from 'src/components/account/AccountProfile';
+// import AccountProfile from 'src/components/account/AccountProfile';
 import AccountProfileDetails from 'src/components/account/AccountProfileDetails';
 import axios from 'axios';
 
@@ -42,12 +42,12 @@ return (
             md={6}
             xs={12}
           >
-            <AccountProfile />
+            {/* <AccountProfile /> */}
           </Grid>
           <Grid
             item
-            lg={8}
-            md={6}
+            lg={12}
+            md={12}
             xs={12}
           >
             <AccountProfileDetails />
