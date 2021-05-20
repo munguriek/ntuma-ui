@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
@@ -13,8 +14,19 @@ import {
   Typography,
   Grid,
 } from '@material-ui/core';
+import axios from 'axios';
 
 const Register = () => {
+  // putting an empty array to give it an initial value
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:1200/register')
+    .then((res) => {
+      console.log(res.user)
+      setUser(res.user)
+    })
+  }, [])
+  
   const navigate = useNavigate();
 
   const picture = {

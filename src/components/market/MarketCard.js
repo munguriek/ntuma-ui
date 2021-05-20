@@ -29,7 +29,7 @@ const MarketCard = ({ market, ...rest }) => (
       >
         <Avatar
           alt="Market"
-          src={market.media}
+          src=""
           variant="square"
         />
       </Box>
@@ -39,14 +39,14 @@ const MarketCard = ({ market, ...rest }) => (
         gutterBottom
         variant="h4"
       >
-        {market.title}
+        {market.market_name}
       </Typography>
       <Typography
         align="center"
         color="textPrimary"
         variant="body1"
       >
-        {market.description}
+        {market.market_location}
       </Typography>
     </CardContent>
     <Box sx={{ flexGrow: 1 }} />

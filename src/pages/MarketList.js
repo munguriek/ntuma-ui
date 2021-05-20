@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet';
 import {
   Box,
@@ -8,8 +9,18 @@ import {
 import MarketListToolbar from 'src/components/market//MarketListToolbar';
 import MarketCard from 'src/components/market//MarketCard';
 import markets from 'src/__mocks__/markets';
+import axios from 'axios';
 
-const MarketList = () => (
+const MarketList = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:1200/add-market').then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  }, []);
+
+  return(
   <>
     <Helmet>
       <title>Markets | Ntuma Admin</title>
@@ -28,7 +39,7 @@ const MarketList = () => (
             container
             spacing={3}
           >
-            {markets.map((market) => (
+            {data.map((market) => (
               <Grid
                 item
                 key={market.id}
@@ -57,6 +68,7 @@ const MarketList = () => (
       </Container>
     </Box>
   </>
-);
+  )
+};
 
 export default MarketList;
