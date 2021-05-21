@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import {
   Box,
   Button,
@@ -9,6 +9,8 @@ import {
   Grid,
   TextField
 } from '@material-ui/core';
+import axios from 'axios';
+import { User } from 'react-feather';
 
 const states = [
   {
@@ -26,21 +28,30 @@ const states = [
 ];
 
 const AccountProfileDetails = (props) => {
-  const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
-  });
+  // putting an empty array to give it an initial value
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:1200/register')
+    .then((res) => {
+      console.log(res)
+      setData(res.data)
+    })
+  }, [])
+  // const [values, setValues] = useState({
+  //   firstName: firstName.firstName,
+  //   lastName: '',
+  //   email: '',
+  //   phone: '',
+  //   state: 'Alabama',
+  //   country: 'USA'
+  // });
 
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
-  };
+  // const handleChange = (event) => {
+  //   setData({
+  //     ...user,
+  //     [event.target.name]: event.target.value
+  //   });
+  // };
 
   return (
     <form
@@ -69,9 +80,9 @@ const AccountProfileDetails = (props) => {
                 helperText="Please specify the first name"
                 label="First name"
                 name="firstName"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
-                value={values.firstName}
+                value={data.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -84,9 +95,9 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Last name"
                 name="lastName"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
-                value={values.lastName}
+                value={data.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -99,9 +110,9 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Email Address"
                 name="email"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
-                value={values.email}
+                value={data.username}
                 variant="outlined"
               />
             </Grid>
@@ -114,9 +125,9 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Phone Number"
                 name="phone"
-                onChange={handleChange}
+                // onChange={handleChange}
                 type="number"
-                value={values.phone}
+                value={data.phone}
                 variant="outlined"
               />
             </Grid>
@@ -129,9 +140,9 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Country"
                 name="country"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
-                value={values.country}
+                // value={}
                 variant="outlined"
               />
             </Grid>
@@ -144,11 +155,11 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Select State"
                 name="state"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
                 select
                 SelectProps={{ native: true }}
-                value={values.state}
+                // value={}
                 variant="outlined"
               >
                 {states.map((option) => (

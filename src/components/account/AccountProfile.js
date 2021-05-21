@@ -10,16 +10,16 @@ import {
   Typography
 } from '@material-ui/core';
 
-const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith',
-  timezone: 'GTM-7'
-};
+// const user = {
+//   avatar: '/static/images/avatars/avatar_6.png',
+//   city: 'Los Angeles',
+//   country: 'USA',
+//   jobTitle: 'Senior Developer',
+//   name: '',
+//   timezone: 'GTM-7'
+// };
 
-const AccountProfile = (props) => (
+const AccountProfile = (user, props) => (
   <Card {...props}>
     <CardContent>
       <Box

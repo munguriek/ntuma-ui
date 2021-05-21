@@ -1,3 +1,4 @@
+import {useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import {
   Box,
@@ -8,8 +9,18 @@ import {
 import ProductListToolbar from 'src/components/product/ProductListToolbar';
 import ProductCard from 'src/components/product//ProductCard';
 import products from 'src/__mocks__/products';
+import axios from 'axios';
 
-const ProductList = () => (
+const ProductList = () => {
+    const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:1200/product').then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  }, []);
+
+  return(
   <>
     <Helmet>
       <title>Products | Ntuma Admin</title>
@@ -28,7 +39,7 @@ const ProductList = () => (
             container
             spacing={3}
           >
-            {products.map((product) => (
+            {data.map((product) => (
               <Grid
                 item
                 key={product.id}
@@ -57,6 +68,6 @@ const ProductList = () => (
       </Container>
     </Box>
   </>
-);
-
+)
+};
 export default ProductList;
