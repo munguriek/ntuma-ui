@@ -3,13 +3,12 @@ import { Helmet } from 'react-helmet';
 import {
   Box,
   Container,
-  Grid,
+  // Grid,
   Pagination
 } from '@material-ui/core';
 import ProductListToolbar from 'src/components/product/ProductListToolbar';
-import ProductCard from 'src/components/product//ProductCard';
-import products from 'src/__mocks__/products';
-import axios from 'axios';
+// import ProductCard from 'src/components/product//ProductCard';
+// import products from 'src/__mocks__/products';
 
 const ProductList = () => {
     const [data, setData] = useState([]);
@@ -34,7 +33,9 @@ const ProductList = () => {
     >
       <Container maxWidth={false}>
         <ProductListToolbar />
-        <Box sx={{ pt: 3 }}>
+
+        {/* Replace the box below with product list instead */}
+        {/* <Box sx={{ pt: 3 }}>
           <Grid
             container
             spacing={3}
@@ -51,7 +52,8 @@ const ProductList = () => {
               </Grid>
             ))}
           </Grid>
-        </Box>
+        </Box> */}
+
         <Box
           sx={{
             display: 'flex',

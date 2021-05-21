@@ -12,39 +12,28 @@ import {
 import axios from 'axios';
 import { User } from 'react-feather';
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
+// const states = [
+//   {
+//     value: 'alabama',
+//     label: 'Alabama'
+//   },
+//   {
+//     value: 'new-york',
+//     label: 'New York'
+//   },
+//   {
+//     value: 'san-francisco',
+//     label: 'San Francisco'
+//   }
+// ];
 
 const AccountProfileDetails = (props) => {
-  // putting an empty array to give it an initial value
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios.get('http://localhost:1200/register')
-    .then((res) => {
-      console.log(res)
-      setData(res.data)
-    })
-  }, [])
-  // const [values, setValues] = useState({
-  //   firstName: firstName.firstName,
-  //   lastName: '',
-  //   email: '',
-  //   phone: '',
-  //   state: 'Alabama',
-  //   country: 'USA'
-  // });
+  const [values, setValues] = useState({
+    firstName: 'Obed',
+    lastName: 'Mogeni',
+    email: 'demo@devias.io',
+    phone: '077123123'
+  });
 
   // const handleChange = (event) => {
   //   setData({
@@ -62,7 +51,7 @@ const AccountProfileDetails = (props) => {
       <Card>
         <CardHeader
           subheader="The information can be edited"
-          title="Profile"
+          title="Admin Profile"
         />
         <Divider />
         <CardContent>
@@ -131,7 +120,7 @@ const AccountProfileDetails = (props) => {
                 variant="outlined"
               />
             </Grid>
-            <Grid
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -145,8 +134,8 @@ const AccountProfileDetails = (props) => {
                 // value={}
                 variant="outlined"
               />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -171,7 +160,7 @@ const AccountProfileDetails = (props) => {
                   </option>
                 ))}
               </TextField>
-            </Grid>
+            </Grid> */}
           </Grid>
         </CardContent>
         <Divider />
