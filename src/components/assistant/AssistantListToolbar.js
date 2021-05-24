@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardContent,
   TextField,
@@ -8,6 +7,7 @@ import {
   SvgIcon
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
+import AddAssistant from './AssistantModal'
 
 const AssistantListToolbar = (props) => (
   <Box {...props}>
@@ -17,12 +17,7 @@ const AssistantListToolbar = (props) => (
         justifyContent: 'flex-end'
       }}
     >
-      <Button
-        color="primary"
-        variant="contained"
-      >
-        Add Assistant
-      </Button>
+      <AddAssistant/>
     </Box>
     <Box sx={{ mt: 3 }}>
       <Card>
