@@ -17,16 +17,27 @@ import {
 import axios from 'axios';
 
 const Register = () => {
-  // putting an empty array to give it an initial value
-  // const [user, setUser] = useState([]);
-  // useEffect(() => {
-  //   axios.get('http://localhost:1200/register')
-  //   .then((res) => {
-  //     console.log(res.user)
-  //     setUser(res.user)
-  //   })
-  // }, [])
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    phone: "",
+    policy: ""
+  });
 
+  const addUser = () => {
+    axios.post("http://localhost:1200/register", { ...user })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const Submit = (e) => {
+    e.preventDefault();
+  };
   
   const navigate = useNavigate();
 
@@ -97,7 +108,7 @@ const Register = () => {
                   touched,
                   values
                 }) => (
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit, addUser}>
                     <Box sx={{ mb: 3 }}>
                       <Typography
                         color="textPrimary"

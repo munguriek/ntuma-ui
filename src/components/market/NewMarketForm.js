@@ -25,9 +25,6 @@ const AddMarketForm =() => {
   const handleSubmit = (e) => {
     e.preventDefault();
   }
-  // const handleMarketName= (e) => {
-  //   setMarket(e.target.value)
-  // }
 
   useEffect(() => {
     
