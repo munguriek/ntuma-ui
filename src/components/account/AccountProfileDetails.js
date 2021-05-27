@@ -28,6 +28,14 @@ import { User } from 'react-feather';
 // ];
 
 const AccountProfileDetails = (props) => {
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   axios.get('http://localhost:1200/register').then((res) => {
+  //     console.log(res.data)
+  //     setData(res.data);
+  //   });
+  // }, []);
+
   const [values, setValues] = useState({
     firstName: 'Obed',
     lastName: 'Mogeni',
@@ -36,7 +44,7 @@ const AccountProfileDetails = (props) => {
   });
 
   // const handleChange = (event) => {
-  //   setData({
+  //   setValues({
   //     ...user,
   //     [event.target.name]: event.target.value
   //   });
@@ -71,7 +79,7 @@ const AccountProfileDetails = (props) => {
                 name="firstName"
                 // onChange={handleChange}
                 required
-                value={data.firstName}
+                value={values.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -86,7 +94,7 @@ const AccountProfileDetails = (props) => {
                 name="lastName"
                 // onChange={handleChange}
                 required
-                value={data.lastName}
+                value={values.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -101,7 +109,7 @@ const AccountProfileDetails = (props) => {
                 name="email"
                 // onChange={handleChange}
                 required
-                value={data.username}
+                value={values.email}
                 variant="outlined"
               />
             </Grid>
@@ -116,7 +124,7 @@ const AccountProfileDetails = (props) => {
                 name="phone"
                 // onChange={handleChange}
                 type="number"
-                value={data.phone}
+                value={values.phone}
                 variant="outlined"
               />
             </Grid>

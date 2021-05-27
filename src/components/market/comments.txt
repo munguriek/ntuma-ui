@@ -1,0 +1,37 @@
+// constructor(props) {
+  //   super(props);
+
+  //   this.onChangeMarketName = this.onChangeMarketName.bind(this);
+  //   this.onChangeMarketLocation = this.onChangeMarketName.bind(this);
+  //   this.onSubmit = this.onSubmit.bind(this);
+
+  //   this.state = {
+  //     market_name: "",
+  //     market_location: "",
+  //   };
+  // }
+
+  // onChangeMarketName(e) {
+  //   this.setState({ market_name: e.target.value });
+  // }
+  // onChangeMarketLocation(e) {
+  //   this.setState({ market_location: e.target.value });
+  // }
+  // onSubmit(e) {
+  //   e.preventDefault();
+
+  //   const markets = {
+  //     market_name: this.state.market_name,
+  //     market_location: this.state.market_location,
+  //   };
+
+  //   axios
+  //     .post("http://localhost:1200/add-market", markets)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   this.setState = { market_name: "", market_location: "" };
+  // }

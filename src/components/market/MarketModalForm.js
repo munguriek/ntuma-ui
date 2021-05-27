@@ -9,9 +9,12 @@ import AddMarketForm from './NewMarketForm';
 
 function AddMarket(props) {
     const [show, setShow] = useState(false);
+    const [market, setMarket] = useState([]);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    
   
     return (
       <>
@@ -35,7 +38,7 @@ function AddMarket(props) {
             <ModalTitle>Add New Market</ModalTitle>
           </ModalHeader>
           <ModalBody>
-              <AddMarketForm/>
+              <AddMarketForm />
           </ModalBody>
         </Modal>
       </>

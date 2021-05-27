@@ -18,14 +18,15 @@ import axios from 'axios';
 
 const Register = () => {
   // putting an empty array to give it an initial value
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    axios.get('http://localhost:1200/register')
-    .then((res) => {
-      console.log(res.user)
-      setUser(res.user)
-    })
-  }, [])
+  // const [user, setUser] = useState([]);
+  // useEffect(() => {
+  //   axios.get('http://localhost:1200/register')
+  //   .then((res) => {
+  //     console.log(res.user)
+  //     setUser(res.user)
+  //   })
+  // }, [])
+
   
   const navigate = useNavigate();
 
@@ -66,25 +67,25 @@ const Register = () => {
             >
               <Formik
                 initialValues={{
-                  email: '',
-                  phone: '',
                   firstName: '',
                   lastName: '',
+                  username: '',
+                  phone: '',
                   password: '',
                   policy: false
                 }}
                 validationSchema={
               Yup.object().shape({
-                email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                phone: Yup.string().max(255).required('Phone number is required'),
                 firstName: Yup.string().max(255).required('First name is required'),
                 lastName: Yup.string().max(255).required('Last name is required'),
+                username: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+                phone: Yup.string().max(255).required('Phone number is required'),
                 password: Yup.string().max(255).required('password is required'),
                 policy: Yup.boolean().oneOf([true], 'This field must be checked')
               })
             }
                 onSubmit={() => {
-                  navigate('/app/dashboard', { replace: true });
+                  navigate('/app/Login', { replace: true });
                 }}
               >
                 {({
@@ -142,7 +143,7 @@ const Register = () => {
                       helperText={touched.email && errors.email}
                       label="Email Address"
                       margin="normal"
-                      name="email"
+                      name="username"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       type="email"
@@ -216,6 +217,7 @@ const Register = () => {
                         size="large"
                         type="submit"
                         variant="contained"
+          
                       >
                         Sign up now
                       </Button>
