@@ -22,7 +22,8 @@ const Register = () => {
     lastName: "",
     username: "",
     phone: "",
-    policy: ""
+    password: "",
+    policy: false
   });
 
   const addUser = () => {
@@ -35,7 +36,7 @@ const Register = () => {
       });
   };
 
-  const Submit = (e) => {
+  const manageSubmit = (e) => {
     e.preventDefault();
   };
   
@@ -52,51 +53,60 @@ const Register = () => {
         <title>Register | Ntuma Admin</title>
       </Helmet>
       <Grid container spacing={0}>
-
         <Grid item xs={6}>
           <img
             src={picture.imageUrl}
             alt={picture.name}
             style={{
               height: 725,
-              width: 720
+              width: 720,
             }}
           />
         </Grid>
         <Grid item xs={6}>
           <Box
             sx={{
-              backgroundColor: 'white',
-              display: 'flex',
-              flexDirection: 'column',
-              height: '100%',
-              justifyContent: 'center',
+              backgroundColor: "white",
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+              justifyContent: "center",
             }}
           >
-            <Container
-              maxWidth="sm"
-            >
+            <Container maxWidth="sm">
               <Formik
                 initialValues={{
-                  firstName: '',
-                  lastName: '',
-                  username: '',
-                  phone: '',
-                  password: '',
-                  policy: false
+                  firstName: "",
+                  lastName: "",
+                  username: "",
+                  phone: "",
+                  password: "",
+                  policy: "",
                 }}
-                validationSchema={
-              Yup.object().shape({
-                firstName: Yup.string().max(255).required('First name is required'),
-                lastName: Yup.string().max(255).required('Last name is required'),
-                username: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                phone: Yup.string().max(255).required('Phone number is required'),
-                password: Yup.string().max(255).required('password is required'),
-                policy: Yup.boolean().oneOf([true], 'This field must be checked')
-              })
-            }
-                onSubmit={() => {
-                  navigate('/app/Login', { replace: true });
+                validationSchema={Yup.object().shape({
+                  firstName: Yup.string()
+                    .max(255)
+                    .required("First name is required"),
+                  lastName: Yup.string()
+                    .max(255)
+                    .required("Last name is required"),
+                  username: Yup.string()
+                    .email("Must be a valid email")
+                    .max(255)
+                    .required("Email is required"),
+                  phone: Yup.string()
+                    .max(255)
+                    .required("Phone number is required"),
+                  password: Yup.string()
+                    .max(255)
+                    .required("password is required"),
+                  policy: Yup.boolean().oneOf(
+                    [true],
+                    "This field must be checked"
+                  ),
+                })}
+                handleSubmit={() => {
+                  navigate("/app/Login", { replace: true });
                 }}
               >
                 {({
@@ -106,14 +116,11 @@ const Register = () => {
                   handleSubmit,
                   isSubmitting,
                   touched,
-                  values
+                  values,
                 }) => (
-                  <form onSubmit={handleSubmit, addUser}>
+                  <form onSubmit={(handleSubmit, manageSubmit, addUser)}>
                     <Box sx={{ mb: 3 }}>
-                      <Typography
-                        color="textPrimary"
-                        variant="h2"
-                      >
+                      <Typography color="textPrimary" variant="h2">
                         Create new admin account
                       </Typography>
                       <Typography
@@ -132,8 +139,13 @@ const Register = () => {
                       margin="normal"
                       name="firstName"
                       onBlur={handleBlur}
-                      onChange={handleChange}
-                      value={values.firstName}
+                      onChange={
+                        (handleChange,
+                        (e) => {
+                          setUser({ ...user, firstName: e.target.value });
+                        })
+                      }
+                      value={user.firstName}
                       variant="outlined"
                     />
                     <TextField
@@ -144,8 +156,13 @@ const Register = () => {
                       margin="normal"
                       name="lastName"
                       onBlur={handleBlur}
-                      onChange={handleChange}
-                      value={values.lastName}
+                      onChange={
+                        (handleChange,
+                        (e) => {
+                          setUser({ ...user, lastName: e.target.value });
+                        })
+                      }
+                      value={user.lastName}
                       variant="outlined"
                     />
                     <TextField
@@ -156,9 +173,14 @@ const Register = () => {
                       margin="normal"
                       name="username"
                       onBlur={handleBlur}
-                      onChange={handleChange}
+                      onChange={
+                        (handleChange,
+                        (e) => {
+                          setUser({ ...user, username: e.target.value });
+                        })
+                      }
                       type="email"
-                      value={values.email}
+                      value={user.username}
                       variant="outlined"
                     />
                     <TextField
@@ -169,8 +191,13 @@ const Register = () => {
                       margin="normal"
                       name="phone"
                       onBlur={handleBlur}
-                      onChange={handleChange}
-                      value={values.phone}
+                      onChange={
+                        (handleChange,
+                        (e) => {
+                          setUser({ ...user, phone: e.target.value });
+                        })
+                      }
+                      value={user.phone}
                       variant="outlined"
                     />
                     <TextField
@@ -181,29 +208,35 @@ const Register = () => {
                       margin="normal"
                       name="password"
                       onBlur={handleBlur}
-                      onChange={handleChange}
+                      onChange={
+                        (handleChange,
+                        (e) => {
+                          setUser({ ...user, password: e.target.value });
+                        })
+                      }
                       type="password"
-                      value={values.password}
+                      value={user.password}
                       variant="outlined"
                     />
                     <Box
                       sx={{
-                        alignItems: 'center',
-                        display: 'flex',
-                        ml: -1
+                        alignItems: "center",
+                        display: "flex",
+                        ml: -1,
                       }}
                     >
                       <Checkbox
-                        checked={values.policy}
+                        checked={user.policy}
                         name="policy"
-                        onChange={handleChange}
+                        onChange={(
+                          handleChange,
+                          (e) => {
+                            setUser({ ...user, policy: e.target.checked });
+                          })
+                        }
                       />
-                      <Typography
-                        color="textSecondary"
-                        variant="body1"
-                      >
-                        I have read the
-                        {' '}
+                      <Typography color="textSecondary" variant="body1">
+                        I have read the{" "}
                         <Link
                           color="primary"
                           component={RouterLink}
@@ -216,9 +249,7 @@ const Register = () => {
                       </Typography>
                     </Box>
                     {Boolean(touched.policy && errors.policy) && (
-                    <FormHelperText error>
-                      {errors.policy}
-                    </FormHelperText>
+                      <FormHelperText error>{errors.policy}</FormHelperText>
                     )}
                     <Box sx={{ py: 2 }}>
                       <Button
@@ -228,22 +259,13 @@ const Register = () => {
                         size="large"
                         type="submit"
                         variant="contained"
-          
                       >
                         Sign up now
                       </Button>
                     </Box>
-                    <Typography
-                      color="textSecondary"
-                      variant="body1"
-                    >
-                      Have an account?
-                      {' '}
-                      <Link
-                        component={RouterLink}
-                        to="/login"
-                        variant="h6"
-                      >
+                    <Typography color="textSecondary" variant="body1">
+                      Have an account?{" "}
+                      <Link component={RouterLink} to="/login" variant="h6">
                         Sign in
                       </Link>
                     </Typography>

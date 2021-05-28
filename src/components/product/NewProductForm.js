@@ -12,11 +12,17 @@ const [product, setProduct] = useState({
   productType: "",
   price: "",
   quantity: "",
-  photo: ""
+  photo: null
 })
 
 const addProduct = () => {
-  axios.post("http://localhost:1200/product", { ...product })
+  const formData = new FormData();
+  formData.append("file", product.photo.filename);
+  axios.post("http://localhost:1200/product", formData, {
+      onUploadProgress: progressEvent => {
+        console.log('Uploading:'+ Math.round(progressEvent.loaded / progressEvent.total * 100) + "%")
+      }
+    }, { ...product })
     .then((res) => {
       console.log(res.data);
     })
@@ -27,6 +33,8 @@ const addProduct = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
+
+  
 };
 
 return (
@@ -102,7 +110,7 @@ return (
           custom
           value={product.photo}
           onChange={(e) => {
-            setProduct({ ...product, photo: e.target.value });
+            setProduct({ ...product, photo: e.target.files[0] });
           }}
         />
       </Col>
