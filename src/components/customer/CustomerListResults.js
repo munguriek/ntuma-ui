@@ -13,6 +13,8 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core';
+import { Form } from 'formik';
+// import Form from 'react-bootstrap/Form';
 
 const CustomerListResults = ({ customers, ...rest }) => {
   const [limit, setLimit] = useState(10);
@@ -85,6 +87,15 @@ const CustomerListResults = ({ customers, ...rest }) => {
                   </TableCell>
                   <TableCell>
                     {moment(customer.createdAt).format('DD/MM/YYYY')}
+                  </TableCell>
+                  <TableCell>
+                    {/* <Form>
+                      <Form.Check 
+                        type="switch"
+                        id="custom-switch"
+                        label="Check this switch"
+                      />
+                    </Form> */}
                   </TableCell>
                 </TableRow>
               ))}

@@ -90,6 +90,7 @@ const TotalCustomers = (props) => (
           style={{
             backgroundColor: green[600]
           }}
+          Link to= "/"
         >
           View Customers List
         </Button>
