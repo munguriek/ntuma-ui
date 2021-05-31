@@ -12,18 +12,17 @@ const AddMarketForm =() => {
     market_location: "",
   });
 
-  const addMarket = () => {
-  axios.post("http://localhost:1200/add-market", { ...market })
-  .then((res) => {
-    console.log(res.data);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+     axios
+       .post("http://localhost:1200/add-market", { ...market })
+       .then((res) => {
+         console.log(res.data);
+       })
+       .catch((err) => {
+         console.log(err);
+       });
   }
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const AddMarketForm =() => {
   }, []);
 
     return (
-      <Form onSubmit={(handleSubmit, addMarket)}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} controlId="formHorizontalName">
           <Form.Label column sm={2}>
             Name:

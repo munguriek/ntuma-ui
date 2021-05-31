@@ -15,27 +15,29 @@ function AddProduct(props) {
   
     return (
       <>
-        <Button variant="success" onClick={handleShow} style={{backgroundColor:"#1B7000"}}>
+        <Button
+          variant="success"
+          onClick={handleShow}
+          style={{ backgroundColor: "#1B7000" }}
+        >
           ADD PRODUCT
         </Button>
-  
-        <Modal 
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            show={show} 
-            onHide={handleClose} 
-            backdrop="static" 
-            keyboard={false}
+
+        <Modal
+          {...props}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
         >
-          <ModalHeader closeButton
-          style={{backgroundColor:"#FFF5E3"}}
-          >
+          <ModalHeader closeButton style={{ backgroundColor: "#FFF5E3" }}>
             <ModalTitle>Add New Product</ModalTitle>
           </ModalHeader>
           <ModalBody>
-              <AddProductForm/>
+            <AddProductForm handleClose={handleClose} />
           </ModalBody>
         </Modal>
       </>
