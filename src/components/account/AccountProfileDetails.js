@@ -12,23 +12,10 @@ import {
 import axios from 'axios';
 import { User } from 'react-feather';
 
-// const states = [
-//   {
-//     value: 'alabama',
-//     label: 'Alabama'
-//   },
-//   {
-//     value: 'new-york',
-//     label: 'New York'
-//   },
-//   {
-//     value: 'san-francisco',
-//     label: 'San Francisco'
-//   }
-// ];
-
 const AccountProfileDetails = (props) => {
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    
+  });
   // useEffect(() => {
   //   axios.get('http://localhost:1200/register').then((res) => {
   //     console.log(res.data)
@@ -37,10 +24,10 @@ const AccountProfileDetails = (props) => {
   // }, []);
 
   const [values, setValues] = useState({
-    firstName: 'Obed',
-    lastName: 'Mogeni',
-    email: 'demo@devias.io',
-    phone: '077123123'
+    firstName: '',
+    lastName: '',
+    username: '',
+    phone: ''
   });
 
   // const handleChange = (event) => {
