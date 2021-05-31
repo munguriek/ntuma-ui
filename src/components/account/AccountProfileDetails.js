@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import {
   Box,
   Button,
@@ -9,6 +9,8 @@ import {
   Grid,
   TextField
 } from '@material-ui/core';
+import axios from 'axios';
+import { User } from 'react-feather';
 
 // const states = [
 //   {
@@ -26,6 +28,14 @@ import {
 // ];
 
 const AccountProfileDetails = (props) => {
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   axios.get('http://localhost:1200/register').then((res) => {
+  //     console.log(res.data)
+  //     setData(res.data);
+  //   });
+  // }, []);
+
   const [values, setValues] = useState({
     firstName: 'Obed',
     lastName: 'Mogeni',
@@ -33,12 +43,12 @@ const AccountProfileDetails = (props) => {
     phone: '077123123'
   });
 
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
-  };
+  // const handleChange = (event) => {
+  //   setValues({
+  //     ...user,
+  //     [event.target.name]: event.target.value
+  //   });
+  // };
 
   return (
     <form
@@ -67,7 +77,7 @@ const AccountProfileDetails = (props) => {
                 helperText="Please specify the first name"
                 label="First name"
                 name="firstName"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
                 value={values.firstName}
                 variant="outlined"
@@ -82,7 +92,7 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Last name"
                 name="lastName"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
                 value={values.lastName}
                 variant="outlined"
@@ -97,7 +107,7 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Email Address"
                 name="email"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
                 value={values.email}
                 variant="outlined"
@@ -112,7 +122,7 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Phone Number"
                 name="phone"
-                onChange={handleChange}
+                // onChange={handleChange}
                 type="number"
                 value={values.phone}
                 variant="outlined"
@@ -127,9 +137,9 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Country"
                 name="country"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
-                value={values.country}
+                // value={}
                 variant="outlined"
               />
             </Grid> */}
@@ -142,11 +152,11 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 label="Select State"
                 name="state"
-                onChange={handleChange}
+                // onChange={handleChange}
                 required
                 select
                 SelectProps={{ native: true }}
-                value={values.state}
+                // value={}
                 variant="outlined"
               >
                 {states.map((option) => (

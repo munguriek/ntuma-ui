@@ -39,14 +39,14 @@ const ProductCard = ({ product, ...rest }) => (
         gutterBottom
         variant="h4"
       >
-        {product.title}
+        {product.productName}
       </Typography>
       <Typography
         align="center"
         color="textPrimary"
         variant="body1"
       >
-        {product.description}
+        {product.price}
       </Typography>
     </CardContent>
     <Box sx={{ flexGrow: 1 }} />
