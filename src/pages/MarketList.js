@@ -5,6 +5,7 @@ import MarketListToolbar from "src/components/market//MarketListToolbar";
 import MarketCard from "src/components/market//MarketCard";
 // import markets from 'src/__mocks__/markets'
 import axios from "axios";
+import '../App.css'
 
 const MarketList = () => {
   const [data, setData] = useState([]);

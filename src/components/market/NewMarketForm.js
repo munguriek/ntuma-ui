@@ -6,8 +6,9 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import React, {useState, useEffect} from "react";
 
-const AddMarketForm =() => {
+const AddMarketForm =(props) => {
   const [market, setMarket] = useState({
+    market_image: "",
     market_name: "",
     market_location: "",
   });
@@ -15,10 +16,20 @@ const AddMarketForm =() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+
+    for (const [key, value] of Object.entries(market)) {
+      formData.append(key, value);
+    }
+
+    console.log({ formData });
+    console.log({ market });
      axios
-       .post("http://localhost:1200/add-market", { ...market })
+       .post("http://localhost:1200/add-market", formData, { ...market })
        .then((res) => {
          console.log(res.data);
+         props.handleClose();
        })
        .catch((err) => {
          console.log(err);
@@ -46,6 +57,21 @@ const AddMarketForm =() => {
           </Col>
         </Form.Group>
 
+        <Form.Group as={Row} controlId="formHorizontalName">
+          <Form.Label column sm={2}>
+            Image:
+          </Form.Label>
+          <Col sm={8}>
+            <Form.File
+              id="custom-file"
+              label="Upload a picture of the market" custom
+              onChange={(e) => {
+                setMarket({ ...market, market_image: e.target.files[0] });
+              }}
+            />
+          </Col>
+        </Form.Group>
+
         <Form.Group as={Row} controlId="formHorizontalLocation">
           <Form.Label column sm={2}>
             Location:
@@ -58,7 +84,7 @@ const AddMarketForm =() => {
               value={market.market_location}
               onChange={(e) => {
                 setMarket({ ...market, market_location: e.target.value });
-                // each request 
+                // each request
               }}
             />
           </Col>
@@ -81,26 +107,3 @@ const AddMarketForm =() => {
   };
 
 export default AddMarketForm;
-
-// const [data, setData] = useState([]);
-
-// const handleChange = () => {
-
-// }
-
-// const handleSubmit = () => {
-//   const data = {
-//     marketname: market_name,
-//     marketlocation: market_location,
-//   };
-// };
-// axios
-//   .post("http://localhost:1200/add-market", data)
-//   .then((res) => {
-//     setData(res.data);
-//     setMarket("");
-//     setLocation("");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });

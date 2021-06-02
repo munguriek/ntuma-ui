@@ -5,8 +5,8 @@ import {
   Container,
   Grid
 } from '@material-ui/core';
-// import AccountProfile from 'src/components/account/AccountProfile';
-import AccountProfileDetails from 'src/components/account/AccountProfileDetails';
+import AccountProfilePictureCard from 'src/components/account/AccountProfilePictureCard';
+import AccountProfileDetailsCard from 'src/components/account/AccountProfileDetailsCard';
 
 
 const Account = () => {
@@ -28,13 +28,14 @@ return (
           container
           spacing={3}
         >
+          {/* {data.map((user) => ( */}
           <Grid
             item
             lg={4}
             md={6}
             xs={12}
           >
-            {/* <AccountProfile /> */}
+            <AccountProfilePictureCard />
           </Grid>
           <Grid
             item
@@ -42,8 +43,9 @@ return (
             md={12}
             xs={12}
           >
-            <AccountProfileDetails />
+            <AccountProfileDetailsCard />
           </Grid>
+          {/* ))} */}
         </Grid>
       </Container>
     </Box>

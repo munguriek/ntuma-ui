@@ -11,7 +11,6 @@ import {
   TableRow,
   Typography,
   Avatar,
-  
   // Grid,
   Pagination,
 } from "@material-ui/core";
@@ -20,14 +19,15 @@ import ProductListToolbar from "src/components/product/ProductListToolbar";
 // import products from 'src/__mocks__/products';
 import moment from "moment";
 import axios from "axios";
+import '../App.css'
 
 const ProductList = () => {
   const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   const handleLimitChange = (event) => {
-    setLimit(event.target.value);
+    setLimit(parseInt(event.target.value, 10));
+    setPage(0);
   };
 
   const handlePageChange = (event, newPage) => {
@@ -37,11 +37,13 @@ const ProductList = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:1200/product").then((res) => {
-      console.log(res.data, "walaaaaa");
+      console.log(res.data);
       setData(res.data);
-      setLoading(false)
     });
   }, []);
+
+  // calculations for the empty rows
+  const emptyRows = limit - Math.min(limit, data.length - page * limit);
 
   return (
     <>
@@ -61,13 +63,18 @@ const ProductList = () => {
           {/* Replace the box below with product list instead */}
           <TablePagination
             component="div"
+            // count is the cout of all your rows
             count={data.length}
+            // onpagechnge is what we want to happen when we change the page
             onPageChange={handlePageChange}
             onRowsPerPageChange={handleLimitChange}
+            // page is the current page we are on
             page={page}
+            // how many rows we want per page
             rowsPerPage={limit}
+            // allows u pass on an array of rows one can choose to view in a page
             rowsPerPageOptions={[5, 10, 25]}
-      />
+          />
           <Box sx={{ minWidth: 1050 }}>
             <Table>
               <TableHead>
@@ -83,36 +90,50 @@ const ProductList = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data.slice(0, limit).map((product) => (
-                  <TableRow hover key={product.id}>
-                    <TableCell>
-                      <Box
-                        sx={{
-                          alignItems: "center",
-                          display: "flex",
-                        }}
-                      >
-                        <Typography color="textPrimary" variant="body1">
-                          {product.productName}
-                        </Typography>
-                      </Box>
-                    </TableCell>
-                    <TableCell>{product.productType}</TableCell>
-                    <TableCell>{product.price}</TableCell>
-                    <TableCell>{product.quantity}</TableCell>
-                    <TableCell>
-               
-                      <img src={product.image} alt={product.productName} width='200px' height="100px" />
-                    </TableCell>
-                    <TableCell>
-                      {moment(product.createdAt).format("DD/MM/YYYY")}
-                    </TableCell>
+                {/*  */}
+                {data
+                  .slice(page * limit, page * limit + limit)
+                  .map((product, index) => (
+                    <TableRow hover key={product.id}>
+                      <TableCell>
+                        <Box
+                          sx={{
+                            alignItems: "center",
+                            display: "flex",
+                          }}
+                        >
+                          <Typography color="textPrimary" variant="body1">
+                            {product.productName}
+                          </Typography>
+                        </Box>
+                      </TableCell>
+                      <TableCell>{product.productType}</TableCell>
+                      <TableCell>{product.price}</TableCell>
+                      <TableCell>{product.quantity}</TableCell>
+                      <TableCell>
+                        <img
+                          src={product.image}
+                          alt={product.productName}
+                          class="cover"
+                          width="200px"
+                          height="100px"
+                        />
+                      </TableCell>
+                      <TableCell>
+                        {moment(product.createdAt).format("DD/MM/YYYY")}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                {/* this is basically to create empty rows in the last page incase the number of rows are less than the limit and is good for ui */}
+                {emptyRows > 0 && (
+                  // so the emtpy rows take up the no. of rows emy times the pexels of the height = 53px
+                  <TableRow style={{ height: 53 * emptyRows }}>
+                    <TableCell colSpan={6} />
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </Box>
-          
 
           {/* <Box sx={{ pt: 3 }}>
           <Grid
