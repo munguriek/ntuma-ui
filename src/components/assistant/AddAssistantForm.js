@@ -7,7 +7,7 @@ import axios from 'axios';
 import {useState } from 'react';
 
 
-const AddAssistantForm = (props) => (
+const AddAssistantForm = (props) => {
 const [assistant, setAssistant] = useState({
   firstName: "",
   surName: "",
