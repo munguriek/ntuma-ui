@@ -43,6 +43,7 @@ const Login = () => {
      e.preventDefault();
    };
   const navigate = useNavigate();
+  
   const picture = {
     imageUrl: '/static/images/loginPagePic.jpg',
     name: 'Shop with Ntuma'
@@ -154,6 +155,9 @@ const Login = () => {
                     size="large"
                     type="submit"
                     variant="contained"
+                    onClick = {() => {
+                      navigate('/app/Dashboard')
+                    }}
                   >
                     Sign in now
                   </Button>

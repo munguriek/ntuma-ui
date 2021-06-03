@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 import { User } from 'react-feather';
 
-const AccountProfileDetails = (props) => {
+const AccountProfileDetails = () => {
   const [data, setData] = useState({
     firstName: '',
     lastName: '',
@@ -40,7 +40,7 @@ const AccountProfileDetails = (props) => {
     <form
       autoComplete="off"
       noValidate
-      {...props}
+      // {...props}
     >
       <Card>
         <CardHeader
