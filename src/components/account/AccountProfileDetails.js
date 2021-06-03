@@ -12,21 +12,22 @@ import {
 import axios from 'axios';
 import { User } from 'react-feather';
 
-const AccountProfileDetails = (props) => {
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   axios.get('http://localhost:1200/register').then((res) => {
-  //     console.log(res.data)
-  //     setData(res.data);
-  //   });
-  // }, []);
-
-  const [values, setValues] = useState({
-    firstName: 'Obed',
-    lastName: 'Mogeni',
-    email: 'obed.mo@gmail.com',
-    phone: '077123123'
+const AccountProfileDetails = () => {
+  const [data, setData] = useState({
+    firstName: '',
+    lastName: '',
+    username: '',
+    phone: ''
   });
+
+  useEffect(() => {
+    axios.get('http://localhost:1200/register').then((res) => {
+      console.log(res.data)
+      setData(res.data);
+    });
+  }, []);
+
+
 
   // const handleChange = (event) => {
   //   setValues({
@@ -39,11 +40,11 @@ const AccountProfileDetails = (props) => {
     <form
       autoComplete="off"
       noValidate
-      {...props}
+      // {...props}
     >
       <Card>
         <CardHeader
-          subheader="This information can be edited"
+          subheader="The information can be edited"
           title="Admin Profile"
         />
         <Divider />
@@ -59,12 +60,12 @@ const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                // helperText="Please specify the first name"
+                helperText="Please specify the first name"
                 label="First name"
                 name="firstName"
                 // onChange={handleChange}
                 required
-                value={values.firstName}
+                value={data.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -79,7 +80,7 @@ const AccountProfileDetails = (props) => {
                 name="lastName"
                 // onChange={handleChange}
                 required
-                value={values.lastName}
+                value={data.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -94,7 +95,7 @@ const AccountProfileDetails = (props) => {
                 name="email"
                 // onChange={handleChange}
                 required
-                value={values.email}
+                value={data.username}
                 variant="outlined"
               />
             </Grid>
@@ -109,7 +110,7 @@ const AccountProfileDetails = (props) => {
                 name="phone"
                 // onChange={handleChange}
                 type="number"
-                value={values.phone}
+                value={data.phone}
                 variant="outlined"
               />
             </Grid>
