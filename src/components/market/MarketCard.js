@@ -8,6 +8,7 @@ import {
   Grid,
   Typography,
   Button,
+  Pagination
 } from "@material-ui/core";
 
 const MarketCard = ({ market, ...rest }) => (
@@ -27,7 +28,18 @@ const MarketCard = ({ market, ...rest }) => (
           pb: 3,
         }}
       >
-        <Avatar alt="Market" src="" variant="square" />
+        <img
+          src={market.market_image}
+          alt={market.market_name}
+          class = "cover"
+          width="200px"
+          height="100px"
+        />
+        {/* <Avatar
+          alt="Market"
+          src=""
+          variant="square"
+        /> */}
       </Box>
       <Typography align="center" color="textPrimary" gutterBottom variant="h4">
         {market.market_name}

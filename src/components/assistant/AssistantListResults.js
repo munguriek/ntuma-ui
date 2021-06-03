@@ -23,7 +23,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   
-   const handleLimitChange = (event) => {
+ const handleLimitChange = (event) => {
    setLimit(parseInt(event.target.value, 10));
    setPage(0);
  };
@@ -75,7 +75,6 @@ const AssistantListResults = ({ assistants, ...rest }) => {
     setSelectedAssistantIds(newSelectedAssistantIds);
   };
 
-  
   return (
     <Card {...rest}>
       <PerfectScrollbar>
@@ -88,40 +87,27 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                     checked={selectedAssistantIds.length === assistants.length}
                     color="primary"
                     indeterminate={
-                      selectedAssistantIds.length > 0
-                      && selectedAssistantIds.length < assistants.length
+                      selectedAssistantIds.length > 0 &&
+                      selectedAssistantIds.length < assistants.length
                     }
                     onChange={handleSelectAll}
                   />
                 </TableCell>
-                <TableCell>
-                  Photo
-                </TableCell>
-                <TableCell>
-                  Name
-                </TableCell>
-                {/* <TableCell>
-                  Email
-                </TableCell> */}
-                <TableCell>
-                  Market
-                </TableCell>
-                <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Registration date
-                </TableCell>
-                <TableCell>
-                  Edit Assistant
-                </TableCell>
-                <TableCell>
-                  Deactivate
-                </TableCell>
+                <TableCell> Photo </TableCell>
+                <TableCell> Name </TableCell>
+                {/* <TableCell> Email </TableCell> */}
+                <TableCell> Market </TableCell>
+                <TableCell> Phone </TableCell>
+                <TableCell> Registration date </TableCell>
+                <TableCell> Edit Assistant </TableCell>
+                <TableCell> Deactivate </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-              {assistants.slice(0, limit).map((assistant) => (
+
+            <TableBody>   
+              {data
+                .slice(page * limit, page * limit + limit)
+                .map((assistant, index) => (
                 <TableRow
                   hover
                   key={assistant.id}
@@ -163,8 +149,15 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                   <TableCell>
                     <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
                   </TableCell>
+                  </TableRow>
+                ))}
+              {/* this is basically to create empty rows in the last page incase the number of rows are less than the limit and is good for ui */}
+              {emptyRows > 0 && (
+                // so the emtpy rows take up the no. of rows emy times the pexels of the height = 53px
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
         </Box>
