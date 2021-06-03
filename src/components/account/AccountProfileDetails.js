@@ -12,21 +12,6 @@ import {
 import axios from 'axios';
 import { User } from 'react-feather';
 
-// const states = [
-//   {
-//     value: 'alabama',
-//     label: 'Alabama'
-//   },
-//   {
-//     value: 'new-york',
-//     label: 'New York'
-//   },
-//   {
-//     value: 'san-francisco',
-//     label: 'San Francisco'
-//   }
-// ];
-
 const AccountProfileDetails = (props) => {
   // const [data, setData] = useState([]);
   // useEffect(() => {
@@ -39,7 +24,7 @@ const AccountProfileDetails = (props) => {
   const [values, setValues] = useState({
     firstName: 'Obed',
     lastName: 'Mogeni',
-    email: 'demo@devias.io',
+    email: 'obed.mo@gmail.com',
     phone: '077123123'
   });
 
@@ -58,7 +43,7 @@ const AccountProfileDetails = (props) => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
+          subheader="This information can be edited"
           title="Admin Profile"
         />
         <Divider />
@@ -74,7 +59,7 @@ const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
+                // helperText="Please specify the first name"
                 label="First name"
                 name="firstName"
                 // onChange={handleChange}
@@ -128,47 +113,7 @@ const AccountProfileDetails = (props) => {
                 variant="outlined"
               />
             </Grid>
-            {/* <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Country"
-                name="country"
-                // onChange={handleChange}
-                required
-                // value={}
-                variant="outlined"
-              />
-            </Grid> */}
-            {/* <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                // onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                // value={}
-                variant="outlined"
-              >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-            </Grid> */}
+
           </Grid>
         </CardContent>
         <Divider />

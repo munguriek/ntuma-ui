@@ -53,7 +53,7 @@ const MarketCard = ({ market, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            View Market
+            View Products
           </Button>
         </Grid>
         <Grid

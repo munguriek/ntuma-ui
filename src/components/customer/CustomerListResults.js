@@ -11,10 +11,9 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  Typography,
+  Switch
 } from '@material-ui/core';
-import { Form } from 'formik';
-// import Form from 'react-bootstrap/Form';
 
 const CustomerListResults = ({ customers, ...rest }) => {
   const [limit, setLimit] = useState(10);
@@ -80,7 +79,7 @@ const CustomerListResults = ({ customers, ...rest }) => {
                     {customer.email}
                   </TableCell>
                   <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
+                    {customer.address}
                   </TableCell>
                   <TableCell>
                     {customer.phone}
@@ -89,13 +88,7 @@ const CustomerListResults = ({ customers, ...rest }) => {
                     {moment(customer.createdAt).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
-                    {/* <Form>
-                      <Form.Check 
-                        type="switch"
-                        id="custom-switch"
-                        label="Check this switch"
-                      />
-                    </Form> */}
+                    <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
                   </TableCell>
                 </TableRow>
               ))}

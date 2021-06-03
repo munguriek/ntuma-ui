@@ -6,16 +6,16 @@ import {
   Avatar,
   Box,
   Card,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  Switch,
 } from '@material-ui/core';
 import getInitials from 'src/utils/getInitials';
+import EditAssistant from 'src/components/assistant/EditAssistantModal';
 
 const AssistantListResults = ({ assistants, ...rest }) => {
   const [selectedAssistantIds, setSelectedAssistantIds] = useState([]);
@@ -69,7 +69,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
+                {/* <TableCell padding="checkbox">
                   <Checkbox
                     checked={selectedAssistantIds.length === assistants.length}
                     color="primary"
@@ -79,13 +79,16 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                     }
                     onChange={handleSelectAll}
                   />
+                </TableCell> */}
+                <TableCell>
+                  Photo
                 </TableCell>
                 <TableCell>
                   Name
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   Email
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   Market
                 </TableCell>
@@ -94,6 +97,12 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                 </TableCell>
                 <TableCell>
                   Registration date
+                </TableCell>
+                <TableCell>
+                  Edit Assistant
+                </TableCell>
+                <TableCell>
+                  Deactivate
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -104,45 +113,41 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                   key={assistant.id}
                   selected={selectedAssistantIds.indexOf(assistant.id) !== -1}
                 >
-                  <TableCell padding="checkbox">
+                  {/* <TableCell padding="checkbox">
                     <Checkbox
                       checked={selectedAssistantIds.indexOf(assistant.id) !== -1}
                       onChange={(event) => handleSelectOne(event, assistant.id)}
                       value="true"
                     />
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>
-                    <Box
-                      sx={{
-                        alignItems: 'center',
-                        display: 'flex'
-                      }}
-                    >
                       <Avatar
                         src={assistant.avatarUrl}
                         sx={{ mr: 2 }}
                       >
                         {getInitials(assistant.name)}
                       </Avatar>
-                      <Typography
-                        color="textPrimary"
-                        variant="body1"
-                      >
-                        {assistant.name}
-                      </Typography>
-                    </Box>
                   </TableCell>
                   <TableCell>
+                    {assistant.name}
+                  </TableCell>
+                  {/* <TableCell>
                     {assistant.email}
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>
-                    {`${assistant.address.city}, ${assistant.address.state}, ${assistant.address.country}`}
+                    {assistant.address}
                   </TableCell>
                   <TableCell>
                     {assistant.phone}
                   </TableCell>
                   <TableCell>
                     {moment(assistant.createdAt).format('DD/MM/YYYY')}
+                  </TableCell>
+                  <TableCell>
+                    <EditAssistant/>
+                  </TableCell>
+                  <TableCell>
+                    <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
                   </TableCell>
                 </TableRow>
               ))}

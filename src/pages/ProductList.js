@@ -9,15 +9,11 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography,
-  Avatar,
-  
-  // Grid,
   Pagination,
+  Switch
 } from "@material-ui/core";
 import ProductListToolbar from "src/components/product/ProductListToolbar";
-// import ProductCard from 'src/components/product//ProductCard';
-// import products from 'src/__mocks__/products';
+import EditProduct from "src/components/product/EditProductModal";
 import moment from "moment";
 import axios from "axios";
 
@@ -58,7 +54,6 @@ const ProductList = () => {
         <Container maxWidth={false}>
           <ProductListToolbar />
 
-          {/* Replace the box below with product list instead */}
           <TablePagination
             component="div"
             count={data.length}
@@ -68,70 +63,50 @@ const ProductList = () => {
             rowsPerPage={limit}
             rowsPerPageOptions={[5, 10, 25]}
       />
-          <Box sx={{ minWidth: 1050 }}>
+          <Box sx={{ 
+            minWidth: 1050,
+            backgroundColor: "white",
+            padding: 3,
+            borderRadius: "5px"
+            
+            }}>
             <Table>
               <TableHead>
                 <TableRow>
+                  <TableCell>Product Image</TableCell>
                   <TableCell>Product Name</TableCell>
                   <TableCell>Product Type</TableCell>
                   <TableCell>Price</TableCell>
                   <TableCell>Quantity</TableCell>
-                  <TableCell>Product image</TableCell>
-                  <TableCell>Date of entry</TableCell>
-                  <TableCell>Delete product</TableCell>
-                  <TableCell>Edit product</TableCell>
+                  <TableCell>Date of Entry</TableCell>
+                  <TableCell>Edit Product</TableCell>
+                  <TableCell>Unstock Product</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {data.slice(0, limit).map((product) => (
                   <TableRow hover key={product.id}>
                     <TableCell>
-                      <Box
-                        sx={{
-                          alignItems: "center",
-                          display: "flex",
-                        }}
-                      >
-                        <Typography color="textPrimary" variant="body1">
-                          {product.productName}
-                        </Typography>
-                      </Box>
+                      <img src={product.image} alt={product.productName} width='200px' height="100px" />
                     </TableCell>
+                    <TableCell>{product.productName}</TableCell>
                     <TableCell>{product.productType}</TableCell>
                     <TableCell>{product.price}</TableCell>
                     <TableCell>{product.quantity}</TableCell>
                     <TableCell>
-               
-                      <img src={product.image} alt={product.productName} width='200px' height="100px" />
+                      {moment(product.createdAt).format("DD/MM/YYYY")}
                     </TableCell>
                     <TableCell>
-                      {moment(product.createdAt).format("DD/MM/YYYY")}
+                      <EditProduct/>
+                    </TableCell>
+                    <TableCell>
+                      <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </Box>
-          
-
-          {/* <Box sx={{ pt: 3 }}>
-          <Grid
-            container
-            spacing={3}
-          >
-            {data.map((product) => (
-              <Grid
-                item
-                key={product.id}
-                lg={4}
-                md={6}
-                xs={12}
-              >
-                <ProductCard product={product} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box> */}
 
           <Box
             sx={{

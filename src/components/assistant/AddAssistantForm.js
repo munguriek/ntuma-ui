@@ -110,7 +110,7 @@ const AddAssistantForm = () => (
 
     <Form.Group as={Row}>
         <Col sm={{ span: 8, offset: 3 }}>
-        <Button type="submit" style={{backgroundColor:"#E78C06"}} > Register </Button>
+        <Button type="submit" style={{backgroundColor:"#E78C06"}} > Save </Button>
         </Col>
     </Form.Group>
     </Form>
