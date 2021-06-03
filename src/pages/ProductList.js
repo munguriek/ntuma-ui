@@ -9,14 +9,11 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography,
-  Avatar,
-  // Grid,
   Pagination,
+  Switch
 } from "@material-ui/core";
 import ProductListToolbar from "src/components/product/ProductListToolbar";
-// import ProductCard from 'src/components/product//ProductCard';
-// import products from 'src/__mocks__/products';
+import EditProduct from "src/components/product/EditProductModal";
 import moment from "moment";
 import axios from "axios";
 import '../App.css'
@@ -60,7 +57,6 @@ const ProductList = () => {
         <Container maxWidth={false}>
           <ProductListToolbar />
 
-          {/* Replace the box below with product list instead */}
           <TablePagination
             component="div"
             // count is the cout of all your rows
@@ -75,55 +71,51 @@ const ProductList = () => {
             // allows u pass on an array of rows one can choose to view in a page
             rowsPerPageOptions={[5, 10, 25]}
           />
-          <Box sx={{ minWidth: 1050 }}>
+          <Box sx={{ 
+            minWidth: 1050,
+            backgroundColor: "white",
+            padding: 3,
+            borderRadius: "5px"
+            }}>
             <Table>
               <TableHead>
                 <TableRow>
+                  <TableCell>Product Image</TableCell>
                   <TableCell>Product Name</TableCell>
                   <TableCell>Product Type</TableCell>
                   <TableCell>Price</TableCell>
                   <TableCell>Quantity</TableCell>
-                  <TableCell>Product image</TableCell>
-                  <TableCell>Date of entry</TableCell>
-                  <TableCell>Delete product</TableCell>
-                  <TableCell>Edit product</TableCell>
+                  <TableCell>Date of Entry</TableCell>
+                  <TableCell>Edit Product</TableCell>
+                  <TableCell>Unstock Product</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
+
                 {/*  */}
                 {data
                   .slice(page * limit, page * limit + limit)
                   .map((product, index) => (
-                    <TableRow hover key={product.id}>
-                      <TableCell>
-                        <Box
-                          sx={{
-                            alignItems: "center",
-                            display: "flex",
-                          }}
-                        >
-                          <Typography color="textPrimary" variant="body1">
-                            {product.productName}
-                          </Typography>
-                        </Box>
-                      </TableCell>
-                      <TableCell>{product.productType}</TableCell>
-                      <TableCell>{product.price}</TableCell>
-                      <TableCell>{product.quantity}</TableCell>
-                      <TableCell>
-                        <img
-                          src={product.image}
-                          alt={product.productName}
-                          class="cover"
-                          width="200px"
-                          height="100px"
-                        />
-                      </TableCell>
-                      <TableCell>
-                        {moment(product.createdAt).format("DD/MM/YYYY")}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  <TableRow hover key={product.id}>
+                    <TableCell>
+                      <img src={product.image} alt={product.productName} width='200px' height="100px" />
+                    </TableCell>
+                    <TableCell>{product.productName}</TableCell>
+                    <TableCell>{product.productType}</TableCell>
+                    <TableCell>{product.price}</TableCell>
+                    <TableCell>{product.quantity}</TableCell>
+                    <TableCell>
+                      {moment(product.createdAt).format("DD/MM/YYYY")}
+                    </TableCell>
+                    <TableCell>
+                      <EditProduct/>
+                    </TableCell>
+                    <TableCell>
+                      <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
+                    </TableCell>
+                  </TableRow>
+                ))}
+                
                 {/* this is basically to create empty rows in the last page incase the number of rows are less than the limit and is good for ui */}
                 {emptyRows > 0 && (
                   // so the emtpy rows take up the no. of rows emy times the pexels of the height = 53px
@@ -131,6 +123,7 @@ const ProductList = () => {
                     <TableCell colSpan={6} />
                   </TableRow>
                 )}
+                
               </TableBody>
             </Table>
           </Box>

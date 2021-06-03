@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet';
 import { Box, Container } from '@material-ui/core';
 import AssistantListResults from 'src/components/assistant/AssistantListResults';
 import AssistantListToolbar from 'src/components/assistant/AssistantListToolbar';
-import assistants from 'src/__mocks__/customers';
+import assistants from 'src/__mocks__/assistants';
 
 const AssistantList = () => (
   <>

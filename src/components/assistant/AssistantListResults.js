@@ -6,23 +6,23 @@ import {
   Avatar,
   Box,
   Card,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  Switch,
 } from '@material-ui/core';
 import getInitials from 'src/utils/getInitials';
 import axios from 'axios';
+import EditAssistant from 'src/components/assistant/EditAssistantModal';
 
 const AssistantListResults = ({ assistants, ...rest }) => {
   const [selectedAssistantIds, setSelectedAssistantIds] = useState([]);
- const [limit, setLimit] = useState(10);
- const [page, setPage] = useState(1);
-
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  
  const handleLimitChange = (event) => {
    setLimit(parseInt(event.target.value, 10));
    setPage(0);
@@ -75,7 +75,6 @@ const AssistantListResults = ({ assistants, ...rest }) => {
     setSelectedAssistantIds(newSelectedAssistantIds);
   };
 
-
   return (
     <Card {...rest}>
       <PerfectScrollbar>
@@ -94,58 +93,62 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                     onChange={handleSelectAll}
                   />
                 </TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Market</TableCell>
-                <TableCell>Phone</TableCell>
-                <TableCell>Registration date</TableCell>
+                <TableCell> Photo </TableCell>
+                <TableCell> Name </TableCell>
+                {/* <TableCell> Email </TableCell> */}
+                <TableCell> Market </TableCell>
+                <TableCell> Phone </TableCell>
+                <TableCell> Registration date </TableCell>
+                <TableCell> Edit Assistant </TableCell>
+                <TableCell> Deactivate </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+
+            <TableBody>   
               {data
                 .slice(page * limit, page * limit + limit)
                 .map((assistant, index) => (
-                  <TableRow
-                    hover
-                    key={assistant.id}
-                    selected={selectedAssistantIds.indexOf(assistant.id) !== -1}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={
-                          selectedAssistantIds.indexOf(assistant.id) !== -1
-                        }
-                        onChange={(event) =>
-                          handleSelectOne(event, assistant.id)
-                        }
-                        value="true"
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Box
-                        sx={{
-                          alignItems: "center",
-                          display: "flex",
-                        }}
+                <TableRow
+                  hover
+                  key={assistant.id}
+                  selected={selectedAssistantIds.indexOf(assistant.id) !== -1}
+                >
+                  {/* <TableCell padding="checkbox">
+                    <Checkbox
+                      checked={selectedAssistantIds.indexOf(assistant.id) !== -1}
+                      onChange={(event) => handleSelectOne(event, assistant.id)}
+                      value="true"
+                    />
+                  </TableCell> */}
+                  <TableCell>
+                      <Avatar
+                        src={assistant.avatarUrl}
+                        sx={{ mr: 2 }}
                       >
-                        <img
-                          src={assistant.profile_pic}
-                          alt={assistant.firstName}
-                          class="cover"
-                          width="200px"
-                          height="100px"
-                        />
-                        <Typography color="textPrimary" variant="body1">
-                          {assistant.name}
-                        </Typography>
-                      </Box>
-                    </TableCell>
-                    <TableCell>{assistant.email}</TableCell>
-                    <TableCell>{assistant.address}</TableCell>
-                    <TableCell>{assistant.phone}</TableCell>
-                    <TableCell>
-                      {moment(assistant.createdAt).format("DD/MM/YYYY")}
-                    </TableCell>
+                        {getInitials(assistant.name)}
+                      </Avatar>
+                  </TableCell>
+                  <TableCell>
+                    {assistant.name}
+                  </TableCell>
+                  {/* <TableCell>
+                    {assistant.email}
+                  </TableCell> */}
+                  <TableCell>
+                    {assistant.address}
+                  </TableCell>
+                  <TableCell>
+                    {assistant.phone}
+                  </TableCell>
+                  <TableCell>
+                    {moment(assistant.createdAt).format('DD/MM/YYYY')}
+                  </TableCell>
+                  <TableCell>
+                    <EditAssistant/>
+                  </TableCell>
+                  <TableCell>
+                    <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
+                  </TableCell>
                   </TableRow>
                 ))}
               {/* this is basically to create empty rows in the last page incase the number of rows are less than the limit and is good for ui */}
