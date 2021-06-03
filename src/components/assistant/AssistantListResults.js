@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -15,12 +15,33 @@ import {
   Switch,
 } from '@material-ui/core';
 import getInitials from 'src/utils/getInitials';
+import axios from 'axios';
 import EditAssistant from 'src/components/assistant/EditAssistantModal';
 
 const AssistantListResults = ({ assistants, ...rest }) => {
   const [selectedAssistantIds, setSelectedAssistantIds] = useState([]);
   const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
+  
+   const handleLimitChange = (event) => {
+   setLimit(parseInt(event.target.value, 10));
+   setPage(0);
+ };
+
+ const handlePageChange = (event, newPage) => {
+   setPage(newPage);
+ };
+
+ const [data, setData] = useState([]);
+ useEffect(() => {
+   axios.get("http://localhost:1200/assistants").then((res) => {
+     console.log(res.data);
+     setData(res.data);
+   });
+ }, []);
+
+ // calculations for the empty rows
+ const emptyRows = limit - Math.min(limit, data.length - page * limit);
 
   const handleSelectAll = (event) => {
     let newSelectedAssistantIds;
@@ -54,14 +75,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
     setSelectedAssistantIds(newSelectedAssistantIds);
   };
 
-  const handleLimitChange = (event) => {
-    setLimit(event.target.value);
-  };
-
-  const handlePageChange = (event, newPage) => {
-    setPage(newPage);
-  };
-
+  
   return (
     <Card {...rest}>
       <PerfectScrollbar>
@@ -69,7 +83,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
           <Table>
             <TableHead>
               <TableRow>
-                {/* <TableCell padding="checkbox">
+                <TableCell padding="checkbox">
                   <Checkbox
                     checked={selectedAssistantIds.length === assistants.length}
                     color="primary"
@@ -79,7 +93,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                     }
                     onChange={handleSelectAll}
                   />
-                </TableCell> */}
+                </TableCell>
                 <TableCell>
                   Photo
                 </TableCell>
