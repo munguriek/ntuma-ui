@@ -10,8 +10,12 @@ import {
 import { orange, green } from '@material-ui/core/colors';
 import Icon from '@mdi/react';
 import { mdiAccountStar } from '@mdi/js';
+import { useNavigate } from "react-router-dom";
 
-const Assistants = (props) => (
+const Assistants = (props) => {
+  const navigate = useNavigate(); 
+
+return (
   <Card
     sx={{ height: '100%' }}
     {...props}
@@ -86,6 +90,9 @@ const Assistants = (props) => (
           style={{
             backgroundColor: green[600]
           }}
+          onClick ={() => {
+              navigate("/app/assistants");
+            }}
         >
           View Assistants List
         </Button>
@@ -93,5 +100,5 @@ const Assistants = (props) => (
     </CardContent>
   </Card>
 );
-
+};
 export default Assistants;

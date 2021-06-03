@@ -10,45 +10,34 @@ import {
 import { orange, green } from '@material-ui/core/colors';
 import Icon from '@mdi/react';
 import { mdiHomeAccount } from '@mdi/js';
+import {useNavigate } from 'react-router-dom';
 
-const TotalCustomers = (props) => (
+const TotalCustomers = (props) => {
+  const navigate = useNavigate();
+
+return (
   <Card {...props}>
     <CardContent>
-      <Grid
-        container
-        spacing={3}
-        sx={{ justifyContent: 'space-between' }}
-      >
+      <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
         <Grid item>
           <Avatar
             sx={{
               backgroundColor: orange[600],
-              color: 'white',
+              color: "white",
               height: 56,
-              width: 56
+              width: 56,
             }}
           >
-            <Icon
-              path={mdiHomeAccount}
-              size={1.5}
-              color="white"
-            >
+            <Icon path={mdiHomeAccount} size={1.5} color="white">
               <mdiHomeAccount />
             </Icon>
           </Avatar>
         </Grid>
         <Grid item>
-          <Typography
-            color="textSecondary"
-            gutterBottom
-            variant="h6"
-          >
+          <Typography color="textSecondary" gutterBottom variant="h6">
             TOTAL CUSTOMERS
           </Typography>
-          <Typography
-            color="textPrimary"
-            variant="h3"
-          >
+          <Typography color="textPrimary" variant="h3">
             100
           </Typography>
         </Grid>
@@ -79,18 +68,22 @@ const TotalCustomers = (props) => (
       </Box> */}
       <Box
         sx={{
-          alignItems: 'center',
-          display: 'flex',
-          pt: 2
+          alignItems: "center",
+          display: "flex",
+          pt: 2,
         }}
       >
         <Button
           variant="contained"
           fullWidth
           style={{
-            backgroundColor: green[600]
+            backgroundColor: green[600],
           }}
-          Link to= "/"
+          Link
+          to="/"
+          onClick={() => {
+            navigate("/app/customers");
+          }}
         >
           View Customers List
         </Button>
@@ -98,5 +91,5 @@ const TotalCustomers = (props) => (
     </CardContent>
   </Card>
 );
-
+};
 export default TotalCustomers;
