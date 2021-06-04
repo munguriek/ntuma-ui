@@ -5,7 +5,7 @@ import {
   Container,
   Grid
 } from '@material-ui/core';
-import AccountProfilePictureCard from 'src/components/account/AccountProfilePictureCard';
+// import AccountProfilePictureCard from 'src/components/account/AccountProfilePictureCard';
 import AccountProfileDetailsCard from 'src/components/account/AccountProfileDetailsCard';
 
 
@@ -35,7 +35,7 @@ return (
             md={6}
             xs={12}
           >
-            <AccountProfilePictureCard />
+            {/* <AccountProfilePictureCard /> */}
           </Grid>
           <Grid
             item

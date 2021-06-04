@@ -82,7 +82,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
+                {/* <TableCell padding="checkbox">
                   <Checkbox
                     checked={selectedAssistantIds.length === assistants.length}
                     color="primary"
@@ -92,7 +92,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                     }
                     onChange={handleSelectAll}
                   />
-                </TableCell>
+                </TableCell> */}
                 <TableCell> Photo </TableCell>
                 <TableCell> Name </TableCell>
                 {/* <TableCell> Email </TableCell> */}

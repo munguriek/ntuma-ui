@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import {
-  Avatar,
   Box,
   Card,
   CardContent,
@@ -8,10 +7,10 @@ import {
   Grid,
   Typography,
   Button,
-  Pagination
 } from "@material-ui/core";
 
 const MarketCard = ({ market, ...rest }) => (
+  
   <Card
     sx={{
       display: "flex",
@@ -35,11 +34,6 @@ const MarketCard = ({ market, ...rest }) => (
           width="200px"
           height="100px"
         />
-        {/* <Avatar
-          alt="Market"
-          src=""
-          variant="square"
-        /> */}
       </Box>
       <Typography align="center" color="textPrimary" gutterBottom variant="h4">
         {market.market_name}
@@ -59,6 +53,7 @@ const MarketCard = ({ market, ...rest }) => (
             display: "flex",
           }}
         >
+
           <Button
             color="textSecondary"
             display="inline"
@@ -67,6 +62,7 @@ const MarketCard = ({ market, ...rest }) => (
           >
             View Products
           </Button>
+
         </Grid>
         <Grid
           item
@@ -94,3 +90,5 @@ MarketCard.propTypes = {
 };
 
 export default MarketCard;
+
+

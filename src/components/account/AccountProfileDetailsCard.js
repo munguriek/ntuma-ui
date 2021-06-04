@@ -10,9 +10,9 @@ import {
   TextField
 } from '@material-ui/core';
 import axios from 'axios';
-import { User } from 'react-feather';
+// import { User } from 'react-feather';
 
-const AccountProfileDetails = () => {
+const AccountProfileDetails = (props) => {
   const [data, setData] = useState({
     firstName: '',
     lastName: '',
@@ -40,12 +40,12 @@ const AccountProfileDetails = () => {
     <form
       autoComplete="off"
       noValidate
-      // {...props}
+      {...props}
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
           title="Admin Profile"
+          subheader="This information can be edited"
         />
         <Divider />
         <CardContent>
@@ -60,7 +60,7 @@ const AccountProfileDetails = () => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
+                // helperText="Please specify the first name"
                 label="First name"
                 name="firstName"
                 // onChange={handleChange}
