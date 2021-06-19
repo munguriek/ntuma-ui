@@ -9,7 +9,7 @@ import {
 import { Search as SearchIcon } from "react-feather";
 import AddProduct from "./ProductModal";
 
-const ProductListToolbar = ({ props, market }) => (
+const ProductListToolbar = (props) => (
   <Box {...props}>
     <Box
       sx={{
@@ -17,7 +17,7 @@ const ProductListToolbar = ({ props, market }) => (
         justifyContent: "flex-end",
       }}
     >
-      <h1>{market.market_name}</h1>
+      {/* <h1>{market.market_name}</h1> */}
       <AddProduct />
     </Box>
     <Box sx={{ mt: 3 }}>

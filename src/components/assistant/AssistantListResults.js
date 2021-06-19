@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import moment from "moment";
+import PerfectScrollbar from "react-perfect-scrollbar";
 import {
-  Avatar,
   Box,
   Card,
   Table,
@@ -13,67 +12,67 @@ import {
   TablePagination,
   TableRow,
   Switch,
-} from '@material-ui/core';
-import getInitials from 'src/utils/getInitials';
-import axios from 'axios';
-import EditAssistant from 'src/components/assistant/EditAssistantModal';
+} from "@material-ui/core";
+// import getInitials from "src/utils/getInitials";
+import axios from "axios";
+import EditAssistant from "src/components/assistant/EditAssistantModal";
 
 const AssistantListResults = ({ assistants, ...rest }) => {
-  const [selectedAssistantIds, setSelectedAssistantIds] = useState([]);
+  // const [selectedAssistantIds, setSelectedAssistantIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
-  
- const handleLimitChange = (event) => {
-   setLimit(parseInt(event.target.value, 10));
-   setPage(0);
- };
 
- const handlePageChange = (event, newPage) => {
-   setPage(newPage);
- };
-
- const [data, setData] = useState([]);
- useEffect(() => {
-   axios.get("http://localhost:1200/assistants").then((res) => {
-     console.log(res.data);
-     setData(res.data);
-   });
- }, []);
-
- // calculations for the empty rows
- const emptyRows = limit - Math.min(limit, data.length - page * limit);
-
-  const handleSelectAll = (event) => {
-    let newSelectedAssistantIds;
-
-    if (event.target.checked) {
-      newSelectedAssistantIds = assistants.map((assistant) => assistant.id);
-    } else {
-      newSelectedAssistantIds = [];
-    }
-
-    setSelectedAssistantIds(newSelectedAssistantIds);
+  const handleLimitChange = (event) => {
+    setLimit(parseInt(event.target.value, 10));
+    setPage(0);
   };
 
-  const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedAssistantIds.indexOf(id);
-    let newSelectedAssistantIds = [];
-
-    if (selectedIndex === -1) {
-      newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds, id);
-    } else if (selectedIndex === 0) {
-      newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds.slice(1));
-    } else if (selectedIndex === selectedAssistantIds.length - 1) {
-      newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelectedAssistantIds = newSelectedAssistantIds.concat(
-        selectedAssistantIds.slice(0, selectedIndex),
-        selectedAssistantIds.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelectedAssistantIds(newSelectedAssistantIds);
+  const handlePageChange = (event, newPage) => {
+    setPage(newPage);
   };
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:1200/assistants").then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  }, []);
+
+  // calculations for the empty rows
+  const emptyRows = limit - Math.min(limit, data.length - page * limit);
+
+  // const handleSelectAll = (event) => {
+  //   let newSelectedAssistantIds;
+
+  //   if (event.target.checked) {
+  //     newSelectedAssistantIds = assistants.map((assistant) => assistant.id);
+  //   } else {
+  //     newSelectedAssistantIds = [];
+  //   }
+
+  //   setSelectedAssistantIds(newSelectedAssistantIds);
+  // };
+
+  // const handleSelectOne = (event, id) => {
+  //   const selectedIndex = selectedAssistantIds.indexOf(id);
+  //   let newSelectedAssistantIds = [];
+
+  //   if (selectedIndex === -1) {
+  //     newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds, id);
+  //   } else if (selectedIndex === 0) {
+  //     newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds.slice(1));
+  //   } else if (selectedIndex === selectedAssistantIds.length - 1) {
+  //     newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds.slice(0, -1));
+  //   } else if (selectedIndex > 0) {
+  //     newSelectedAssistantIds = newSelectedAssistantIds.concat(
+  //       selectedAssistantIds.slice(0, selectedIndex),
+  //       selectedAssistantIds.slice(selectedIndex + 1)
+  //     );
+  //   }
+
+  //   setSelectedAssistantIds(newSelectedAssistantIds);
+  // };
 
   return (
     <Card {...rest}>
@@ -104,51 +103,51 @@ const AssistantListResults = ({ assistants, ...rest }) => {
               </TableRow>
             </TableHead>
 
-            <TableBody>   
+            <TableBody>
               {data
                 .slice(page * limit, page * limit + limit)
-                .map((assistant, index) => (
-                <TableRow
-                  hover
-                  key={assistant.id}
-                  selected={selectedAssistantIds.indexOf(assistant.id) !== -1}
-                >
-                  {/* <TableCell padding="checkbox">
+                .map((assistants, index) => (
+                  <TableRow
+                    hover
+                    key={assistants.id}
+                    // selected={selectedAssistantIds.indexOf(assistant.id) !== -1}
+                  >
+                    {/* <TableCell padding="checkbox">
                     <Checkbox
                       checked={selectedAssistantIds.indexOf(assistant.id) !== -1}
                       onChange={(event) => handleSelectOne(event, assistant.id)}
                       value="true"
                     />
                   </TableCell> */}
-                  <TableCell>
-                      <Avatar
-                        src={assistant.avatarUrl}
-                        sx={{ mr: 2 }}
-                      >
-                        {getInitials(assistant.name)}
-                      </Avatar>
-                  </TableCell>
-                  <TableCell>
-                    {assistant.name}
-                  </TableCell>
-                  {/* <TableCell>
+                    <TableCell>
+                      <img
+                        src={assistants.profile_pic}
+                        alt={assistants.firstName}
+                        class="cover"
+                        width="200px"
+                        height="100px"
+                      />
+                    </TableCell>
+                    <TableCell>
+                      {assistants.firstName}
+                      {assistants.surName}
+                    </TableCell>
+                    {/* <TableCell>
                     {assistant.email}
                   </TableCell> */}
-                  <TableCell>
-                    {assistant.address}
-                  </TableCell>
-                  <TableCell>
-                    {assistant.phone}
-                  </TableCell>
-                  <TableCell>
-                    {moment(assistant.createdAt).format('DD/MM/YYYY')}
-                  </TableCell>
-                  <TableCell>
-                    <EditAssistant/>
-                  </TableCell>
-                  <TableCell>
-                    <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
-                  </TableCell>
+                    <TableCell>{assistants.address}</TableCell>
+                    <TableCell>{assistants.phone}</TableCell>
+                    <TableCell>
+                      {moment(assistants.createdAt).format("DD/MM/YYYY")}
+                    </TableCell>
+                    <TableCell>
+                      <EditAssistant />
+                    </TableCell>
+                    <TableCell>
+                      <Switch
+                        inputProps={{ "aria-label": "primary checkbox" }}
+                      />
+                    </TableCell>
                   </TableRow>
                 ))}
               {/* this is basically to create empty rows in the last page incase the number of rows are less than the limit and is good for ui */}
@@ -176,7 +175,7 @@ const AssistantListResults = ({ assistants, ...rest }) => {
 };
 
 AssistantListResults.propTypes = {
-  assistants: PropTypes.array.isRequired
+  assistants: PropTypes.array.isRequired,
 };
 
 export default AssistantListResults;
