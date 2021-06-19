@@ -4,19 +4,20 @@ import {
   CardContent,
   TextField,
   InputAdornment,
-  SvgIcon
-} from '@material-ui/core';
-import { Search as SearchIcon } from 'react-feather';
-import AddProduct from './ProductModal'
+  SvgIcon,
+} from "@material-ui/core";
+import { Search as SearchIcon } from "react-feather";
+import AddProduct from "./ProductModal";
 
-const ProductListToolbar = (props) => (
+const ProductListToolbar = ({ props, market }) => (
   <Box {...props}>
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'flex-end'
+        display: "flex",
+        justifyContent: "flex-end",
       }}
     >
+      <h1>{market.market_name}</h1>
       <AddProduct />
     </Box>
     <Box sx={{ mt: 3 }}>
@@ -28,14 +29,11 @@ const ProductListToolbar = (props) => (
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SvgIcon
-                      fontSize="small"
-                      color="action"
-                    >
+                    <SvgIcon fontSize="small" color="action">
                       <SearchIcon />
                     </SvgIcon>
                   </InputAdornment>
-                )
+                ),
               }}
               placeholder="Search product"
               variant="outlined"

@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import Form from "react-bootstrap/Form";
+import { Form, FormCheck } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -12,6 +12,7 @@ const AddProductForm = (props) => {
     productType: "",
     price: "",
     quantity: "",
+    pdtMarket: "",
     image: "",
   });
 
@@ -96,6 +97,60 @@ const AddProductForm = (props) => {
               setProduct({ ...product, quantity: e.target.value });
             }}
           />
+        </Col>
+      </Form.Group>
+
+      <Form.Group as={Row} controlId="formHorizontalType">
+        <Form.Label column sm={2}>
+          Market:
+        </Form.Label>
+        <Col sm={8}>
+          {["checkbox"].map((type) => (
+            <div key={`inline-${type}`} className="mb-3">
+              <Form.Check
+                inline
+                label="Nakasero"
+                name="group1"
+                type={type}
+                id={`inline-${type}-1`}
+                value={product.pdtMarket}
+                onChange={(e) => {
+                  setProduct({ ...product, pdtMarket: e.target.value });
+                }}
+              />
+              <Form.Check
+                inline
+                label="Ggaba"
+                name="group1"
+                type={type}
+                id={`inline-${type}-2`}
+                value={product.pdtMarket}
+                onChange={(e) => {
+                  setProduct({ ...product, pdtMarket: e.target.value });
+                }}
+              />
+              <Form.Check
+                inline
+                label="Owino"
+                type={type}
+                id={`inline-${type}-3`}
+                value={product.pdtMarket}
+                onChange={(e) => {
+                  setProduct({ ...product, pdtMarket: e.target.value });
+                }}
+              />
+              <Form.Check
+                inline
+                label="Kikuubo"
+                type={type}
+                id={`inline-${type}-3`}
+                value={product.pdtMarket}
+                onChange={(e) => {
+                  setProduct({ ...product, pdtMarket: e.target.value });
+                }}
+              />
+            </div>
+          ))}
         </Col>
       </Form.Group>
 
