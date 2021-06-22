@@ -3,6 +3,8 @@ console.log('Hello, Node! Node is working...');
 
 const express = require('express');
 
+const morgan = require('morgan');
+
 const path = require('path');
 
 const bodyParser = require('body-parser');
@@ -22,6 +24,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 // const RegistersignUp = require('./model/registerSignUpmodel');
+const cors = require('cors');
+// const RegistersignUp = require('./model/registerSignUpmodel');
 require('./model/registerSignUpmodel');
 require('./model/addmarketmodel');
 require('./model/addproductmodel');
@@ -29,7 +33,6 @@ require('./model/addassistantmodel');
 
 const app = express();
 
-const cors = require('cors');
 const addassistantFormRoutes = require('./routes/addassistantformroutes');
 const addproductFormRoutes = require('./routes/addproductformroutes');
 const addmarketFormRoutes = require('./routes/addmarketformroutes');
@@ -52,11 +55,26 @@ mongoose.connection
   });
 
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(bodyParser.json());
 
 app.use(expressSession);
 
-app.use(cors());
+// app.use(cors());
+// Dev Logginf Middleware
+if (process.env.NODE_ENV === 'development') {
+  app.use(
+    cors({
+      origin: process.env.CLIENT_URL,
+    })
+  );
+  app.use(morgan('dev'));
+}
 
 // if static images don't display specify static folders here
 app.use(express.static(path.join(__dirname, 'public')));
@@ -68,12 +86,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Register Admin Passport configs
-// passport.use(Wardoauthsignups.createStrategy());
-// passport.serializeUser(Wardoauthsignups.serializeUser());
-// passport.deserializeUser(Wardoauthsignups.deserializeUser())
+// passport.use(RegistersignUp.createStrategy());
+// passport.serializeUser(RegistersignUp.serializeUser());
+// passport.deserializeUser(RegistersignUp.deserializeUser());
 
 // Registering use of middleware.
-app.use('/register', registerSignUpFormRoutes);
+app.use('/api', registerSignUpFormRoutes);
 app.use('/adminsignin', adminSignInFormRoutes);
 app.use('/addmarket', addmarketFormRoutes);
 app.use('/addproduct', addproductFormRoutes);
