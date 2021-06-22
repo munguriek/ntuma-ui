@@ -39,7 +39,7 @@ router.put('/password/reset', resetPasswordValidator, resetController);
 router.post('/logout', logoutController);
 
 // Register Form registration
-// router.get('/registersignup', (req, res) => {
+// router.get('/registersignup',  (req, res) => {
 //   res.render('registerSignUp');
 // });
 // method 1 uncomment start ...
