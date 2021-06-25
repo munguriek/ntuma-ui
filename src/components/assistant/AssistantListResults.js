@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import moment from "moment";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   Box,
+  Button,
   Card,
   Table,
   TableBody,
@@ -17,8 +18,7 @@ import {
 import axios from "axios";
 import EditAssistant from "src/components/assistant/EditAssistantModal";
 
-const AssistantListResults = ({ assistants, ...rest }) => {
-  // const [selectedAssistantIds, setSelectedAssistantIds] = useState([]);
+const AssistantListResults = ({ assistant, ...rest }) => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
 
@@ -34,45 +34,19 @@ const AssistantListResults = ({ assistants, ...rest }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:1200/assistants").then((res) => {
-      console.log(res.data);
-      setData(res.data);
+      setData((res) => {
+        for (let assistant in res.data) {
+          data = data.push(assistant);
+        }
+        return data;
+      });
+      console.log(data);
     });
+    // set sth to control this hook
   }, []);
 
   // calculations for the empty rows
   const emptyRows = limit - Math.min(limit, data.length - page * limit);
-
-  // const handleSelectAll = (event) => {
-  //   let newSelectedAssistantIds;
-
-  //   if (event.target.checked) {
-  //     newSelectedAssistantIds = assistants.map((assistant) => assistant.id);
-  //   } else {
-  //     newSelectedAssistantIds = [];
-  //   }
-
-  //   setSelectedAssistantIds(newSelectedAssistantIds);
-  // };
-
-  // const handleSelectOne = (event, id) => {
-  //   const selectedIndex = selectedAssistantIds.indexOf(id);
-  //   let newSelectedAssistantIds = [];
-
-  //   if (selectedIndex === -1) {
-  //     newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds, id);
-  //   } else if (selectedIndex === 0) {
-  //     newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds.slice(1));
-  //   } else if (selectedIndex === selectedAssistantIds.length - 1) {
-  //     newSelectedAssistantIds = newSelectedAssistantIds.concat(selectedAssistantIds.slice(0, -1));
-  //   } else if (selectedIndex > 0) {
-  //     newSelectedAssistantIds = newSelectedAssistantIds.concat(
-  //       selectedAssistantIds.slice(0, selectedIndex),
-  //       selectedAssistantIds.slice(selectedIndex + 1)
-  //     );
-  //   }
-
-  //   setSelectedAssistantIds(newSelectedAssistantIds);
-  // };
 
   return (
     <Card {...rest}>
@@ -81,17 +55,6 @@ const AssistantListResults = ({ assistants, ...rest }) => {
           <Table>
             <TableHead>
               <TableRow>
-                {/* <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedAssistantIds.length === assistants.length}
-                    color="primary"
-                    indeterminate={
-                      selectedAssistantIds.length > 0 &&
-                      selectedAssistantIds.length < assistants.length
-                    }
-                    onChange={handleSelectAll}
-                  />
-                </TableCell> */}
                 <TableCell> Photo </TableCell>
                 <TableCell> Name </TableCell>
                 {/* <TableCell> Email </TableCell> */}
@@ -106,39 +69,28 @@ const AssistantListResults = ({ assistants, ...rest }) => {
             <TableBody>
               {data
                 .slice(page * limit, page * limit + limit)
-                .map((assistants, index) => (
-                  <TableRow
-                    hover
-                    key={assistants.id}
-                    // selected={selectedAssistantIds.indexOf(assistant.id) !== -1}
-                  >
-                    {/* <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={selectedAssistantIds.indexOf(assistant.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, assistant.id)}
-                      value="true"
-                    />
-                  </TableCell> */}
+                .map((assistant) => (
+                  <TableRow hover key={assistant.phone}>
                     <TableCell>
                       <img
-                        src={assistants.profile_pic}
-                        alt={assistants.firstName}
+                        src={assistant.profile_pic}
+                        alt={assistant.firstName}
                         class="cover"
                         width="200px"
                         height="100px"
                       />
                     </TableCell>
                     <TableCell>
-                      {assistants.firstName}
-                      {assistants.surName}
+                      {assistant.firstName}
+                      {assistant.surName}
                     </TableCell>
                     {/* <TableCell>
                     {assistant.email}
                   </TableCell> */}
-                    <TableCell>{assistants.address}</TableCell>
-                    <TableCell>{assistants.phone}</TableCell>
+                    <TableCell>{assistant.address}</TableCell>
+                    <TableCell>{assistant.phone}</TableCell>
                     <TableCell>
-                      {moment(assistants.createdAt).format("DD/MM/YYYY")}
+                      {moment(assistant.createdAt).format("DD/MM/YYYY")}
                     </TableCell>
                     <TableCell>
                       <EditAssistant />
@@ -157,13 +109,28 @@ const AssistantListResults = ({ assistants, ...rest }) => {
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
+              <Button
+                onClick={() => {
+                  axios.get("http://localhost:1200/assistants").then((res) => {
+                    setData((res) => {
+                      for (let assistant in res.data) {
+                        data = data.push(assistant);
+                      }
+                      return data;
+                    });
+                    console.log(res.data);
+                  });
+                }}
+              >
+                CLICK ME
+              </Button>
             </TableBody>
           </Table>
         </Box>
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={assistants.length}
+        count={data.length}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleLimitChange}
         page={page}
@@ -174,8 +141,8 @@ const AssistantListResults = ({ assistants, ...rest }) => {
   );
 };
 
-AssistantListResults.propTypes = {
-  assistants: PropTypes.array.isRequired,
-};
+// AssistantListResults.propTypes = {
+//   assistant: PropTypes.array.isRequired,
+// };
 
 export default AssistantListResults;

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import ModalHeader from "react-bootstrap/ModalHeader";

@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import moment from "moment";
+// import moment from "moment";
 
 const EditProductForm = (props) => {
   const [product, setProduct] = useState({
@@ -16,7 +16,7 @@ const EditProductForm = (props) => {
     image: "",
   });
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   const addProduct = (e) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ const EditProductForm = (props) => {
 
   return (
     <Form onSubmit={addProduct}>
-    {/* {data.slice(0, limit).map((product) =>( */}
+      {/* {data.slice(0, limit).map((product) =>( */}
       <Form.Group as={Row} controlId="formHorizontalName">
         <Form.Label column sm={2}>
           Name:
@@ -138,7 +138,6 @@ const EditProductForm = (props) => {
           </Button>
         </Col>
       </Form.Group>
-    
     </Form>
   );
 };

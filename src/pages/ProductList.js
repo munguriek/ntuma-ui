@@ -40,7 +40,7 @@ const ProductList = () => {
         setData(res.data);
       })
       .catch((err) => {
-        Error.json({ message: err });
+        console.log({ message: err });
       });
   }, []);
 
@@ -92,6 +92,7 @@ const ProductList = () => {
                   <TableCell>Product Type</TableCell>
                   <TableCell>Price</TableCell>
                   <TableCell>Quantity</TableCell>
+                  <TableCell>Market</TableCell>
                   <TableCell>Date of Entry</TableCell>
                   <TableCell>Edit Product</TableCell>
                   <TableCell>Unstock Product</TableCell>
@@ -116,6 +117,7 @@ const ProductList = () => {
                       <TableCell>{product.productType}</TableCell>
                       <TableCell>{product.price}</TableCell>
                       <TableCell>{product.quantity}</TableCell>
+                      <TableCell>{product.pdtMarket}</TableCell>
                       <TableCell>
                         {moment(product.createdAt).format("DD/MM/YYYY")}
                       </TableCell>

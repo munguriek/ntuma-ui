@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import React, { useState } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import * as Yup from "yup";
+import { Formik } from "formik";
 import {
   Box,
   Button,
@@ -13,8 +13,8 @@ import {
   TextField,
   Typography,
   Grid,
-} from '@material-ui/core';
-import axios from 'axios';
+} from "@material-ui/core";
+import axios from "axios";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -23,11 +23,12 @@ const Register = () => {
     username: "",
     phone: "",
     password: "",
-    policy: false
+    policy: false,
   });
 
   const addUser = () => {
-    axios.post("http://localhost:1200/register", { ...user })
+    axios
+      .post("http://localhost:1200/register", { ...user })
       .then((res) => {
         console.log(res.data);
       })
@@ -39,12 +40,12 @@ const Register = () => {
   const manageSubmit = (e) => {
     e.preventDefault();
   };
-  
+
   const navigate = useNavigate();
 
   const picture = {
-    imageUrl: '/static/images/loginPagePic.jpg',
-    name: 'Shop with Ntuma'
+    imageUrl: "/static/images/loginPagePic.jpg",
+    name: "Shop with Ntuma",
   };
 
   return (
@@ -228,8 +229,8 @@ const Register = () => {
                       <Checkbox
                         checked={user.policy}
                         name="policy"
-                        onChange={(
-                          handleChange,
+                        onChange={
+                          (handleChange,
                           (e) => {
                             setUser({ ...user, policy: e.target.checked });
                           })
