@@ -12,6 +12,7 @@ const MarketList = () => {
 
   useEffect(() => {
     // we must put the authorization bit in the headers in our axios methods to ensure security
+    console.log("useEffect");
     axios
       .get("http://localhost:1200/add-market")
       .then((res) => {
