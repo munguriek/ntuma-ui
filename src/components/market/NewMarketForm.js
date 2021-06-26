@@ -8,6 +8,10 @@ import React, { useState, useEffect } from "react";
 
 const AddMarketForm = (props) => {
   const [count, setCount] = useState(0);
+
+  const AddedMrkts = () => {
+    setCount(count + 1);
+  };
   const [market, setMarket] = useState({
     market_image: "",
     market_name: "",
@@ -16,7 +20,7 @@ const AddMarketForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCount(count + 1);
+
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(market)) {
@@ -93,12 +97,13 @@ const AddMarketForm = (props) => {
         <Col sm={{ span: 8, offset: 2 }}>
           <Button
             type="submit"
-            // onClick={handleSubmit}
+            onClick={AddedMrkts}
             style={{ backgroundColor: "#E78C06" }}
           >
             {" "}
             Save Market{" "}
           </Button>
+          <p>{count}</p>
         </Col>
       </Form.Group>
     </Form>

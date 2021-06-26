@@ -10,11 +10,9 @@ import {
 import { orange, green } from "@material-ui/core/colors";
 import StoreIcon from "@material-ui/icons/Store";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
-const Markets = (props) => {
+const Markets = ({ props, count }) => {
   const navigate = useNavigate();
-  const [count, setCount] = useState(0);
 
   return (
     <Card sx={{ height: "100%" }} {...props}>
@@ -36,7 +34,7 @@ const Markets = (props) => {
               AVAILABLE MARKETS
             </Typography>
             <Typography color="textPrimary" variant="h3">
-              {count}
+              0{count}
             </Typography>
           </Grid>
         </Grid>
@@ -55,7 +53,6 @@ const Markets = (props) => {
             }}
             onClick={() => {
               navigate("/app/markets");
-              // setCount(count + 1);
             }}
           >
             View Markets List
