@@ -103,7 +103,7 @@ const AddMarketForm = (props) => {
             {" "}
             Save Market{" "}
           </Button>
-          <p>{count}</p>
+          {/* <p>{count}</p> */}
         </Col>
       </Form.Group>
     </Form>

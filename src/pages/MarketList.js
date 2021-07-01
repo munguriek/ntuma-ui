@@ -3,11 +3,12 @@ import { Helmet } from "react-helmet";
 import { Box, Container, Grid, Pagination } from "@material-ui/core";
 import MarketListToolbar from "src/components/market//MarketListToolbar";
 import MarketCard from "src/components/market//MarketCard";
+import Markets from "src/components/dashboard/Markets";
 // import markets from 'src/__mocks__/markets'
 import axios from "axios";
 import "../App.css";
 
-const MarketList = () => {
+const MarketList = (props) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -37,6 +38,7 @@ const MarketList = () => {
       >
         <Container maxWidth={false}>
           <MarketListToolbar />
+          {/* <Markets mrkt={props.mrkt} /> */}
           <Box sx={{ pt: 3 }}>
             <Grid container spacing={3}>
               {data.map((market) => (

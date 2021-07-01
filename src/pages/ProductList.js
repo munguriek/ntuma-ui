@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import {
   Box,
+  Button,
   Container,
   Table,
   TableBody,
@@ -17,6 +18,7 @@ import EditProduct from "src/components/product/EditProductModal";
 import moment from "moment";
 import axios from "axios";
 import "../App.css";
+import { ref } from "yup";
 
 const ProductList = () => {
   const [limit, setLimit] = useState(10);
@@ -31,7 +33,7 @@ const ProductList = () => {
     setPage(newPage);
   };
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(["isInEditMode: false "]);
   useEffect(() => {
     axios
       .get("http://localhost:1200/product")
@@ -47,6 +49,33 @@ const ProductList = () => {
   // calculations for the empty rows
   const emptyRows = limit - Math.min(limit, data.length - page * limit);
 
+  const editMode = () => {
+    setData({
+      isInEditMode: !data.isInEditMode,
+    });
+  };
+  const upDateValue = () => {
+    setData({
+      isInEditMode: false,
+      value: ref.theTextInput.value,
+    });
+  };
+  const renderEditView = () => {
+    return (
+      <div>
+        <input type="text" defaultValue={data.value} ref="theInputText" />
+        <Button variant="success" onClick={upDateValue()}>
+          Save
+        </Button>
+        <Button variant="danger" onClick={editMode()}>
+          x
+        </Button>
+      </div>
+    );
+  };
+  const renderDefaultView = () => {
+    return <div onDoubleClick={editMode()}>{data.value}</div>;
+  };
   return (
     <>
       <Helmet>
@@ -99,6 +128,7 @@ const ProductList = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
+                {data.isInEditMode ? renderEditView() : renderDefaultView()}
                 {/*  */}
                 {data
                   .slice(page * limit, page * limit + limit)
@@ -115,6 +145,7 @@ const ProductList = () => {
                       </TableCell>
                       <TableCell>{product.productName}</TableCell>
                       <TableCell>{product.productType}</TableCell>
+
                       <TableCell>{product.price}</TableCell>
                       <TableCell>{product.quantity}</TableCell>
                       <TableCell>{product.pdtMarket}</TableCell>

@@ -34,7 +34,7 @@ const Markets = ({ props, count }) => {
               AVAILABLE MARKETS
             </Typography>
             <Typography color="textPrimary" variant="h3">
-              0{count}
+              {/* {props.mrkt.count} */}
             </Typography>
           </Grid>
         </Grid>
