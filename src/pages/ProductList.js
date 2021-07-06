@@ -33,7 +33,7 @@ const ProductList = () => {
     setPage(newPage);
   };
 
-  const [data, setData] = useState(["isInEditMode: false "]);
+  const [data, setData] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:1200/product")
@@ -49,33 +49,33 @@ const ProductList = () => {
   // calculations for the empty rows
   const emptyRows = limit - Math.min(limit, data.length - page * limit);
 
-  const editMode = () => {
-    setData({
-      isInEditMode: !data.isInEditMode,
-    });
-  };
-  const upDateValue = () => {
-    setData({
-      isInEditMode: false,
-      value: ref.theTextInput.value,
-    });
-  };
-  const renderEditView = () => {
-    return (
-      <div>
-        <input type="text" defaultValue={data.value} ref="theInputText" />
-        <Button variant="success" onClick={upDateValue()}>
-          Save
-        </Button>
-        <Button variant="danger" onClick={editMode()}>
-          x
-        </Button>
-      </div>
-    );
-  };
-  const renderDefaultView = () => {
-    return <div onDoubleClick={editMode()}>{data.value}</div>;
-  };
+  // const editMode = () => {
+  //   setData({
+  //     isInEditMode: !data.isInEditMode,
+  //   });
+  // };
+  // const upDateValue = () => {
+  //   setData({
+  //     isInEditMode: false,
+  //     value: ref.theTextInput.value,
+  //   });
+  // };
+  // const renderEditView = () => {
+  //   return (
+  //     <div>
+  //       <input type="text" defaultValue={data.value} ref="theInputText" />
+  //       <Button variant="success" onClick={upDateValue()}>
+  //         Save
+  //       </Button>
+  //       <Button variant="danger" onClick={editMode()}>
+  //         x
+  //       </Button>
+  //     </div>
+  //   );
+  // };
+  // const renderDefaultView = () => {
+  //   return <div onDoubleClick={editMode()}>{data.value}</div>;
+  // };
   return (
     <>
       <Helmet>
@@ -128,11 +128,11 @@ const ProductList = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data.isInEditMode ? renderEditView() : renderDefaultView()}
+                {/* {data.isInEditMode ? renderEditView() : renderDefaultView()} */}
                 {/*  */}
                 {data
                   .slice(page * limit, page * limit + limit)
-                  .map((product, index) => (
+                  .map((product) => (
                     <TableRow hover key={product.id}>
                       <TableCell>
                         <img
