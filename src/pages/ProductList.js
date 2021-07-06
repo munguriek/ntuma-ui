@@ -102,7 +102,7 @@ const ProductList = () => {
                 {/*  */}
                 {data
                   .slice(page * limit, page * limit + limit)
-                  .map((product, index) => (
+                  .map((product) => (
                     <TableRow hover key={product.id}>
                       <TableCell>
                         <img
