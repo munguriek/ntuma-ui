@@ -36,33 +36,12 @@ const AssistantList = (...rest) => {
   };
 
   const [data, setData] = useState([]);
-  // const fetchAssistants = () => {
 
-  // };
-  // const assignData = (dataArg) => {
-  //   setData((dataArg) => {
-  //     for (let assistant in dataArg) {
-  //       data.push(assistant);
-  //     }
-  //     return data;
-  //   });
-  // };
-
-  // const fetchAndAssignData = async () => {
-  //   let assistantsData = await fetchAssistants();
-  //   assignData(assistantsData);
-  // };
-
-  // craete a method for setting outside the useeffect and a method fr calling the data
   useEffect(() => {
     axios.get("http://localhost:1200/assistants").then((res) => {
       setData(res.data);
       console.log(res.data);
-      //  return res.data;
     });
-
-    // fetchAndAssignData();
-
     // set sth to control this hook
   }, []);
 
@@ -125,7 +104,7 @@ const AssistantList = (...rest) => {
                             {moment(assistant.createdAt).format("DD/MM/YYYY")}
                           </TableCell>
                           <TableCell>
-                            <EditAssistant phone={assistant.phone} />
+                            <EditAssistant id={assistant._id} />
                           </TableCell>
                           <TableCell>
                             <Switch

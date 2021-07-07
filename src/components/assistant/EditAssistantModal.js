@@ -6,15 +6,17 @@ import ModalTitle from "react-bootstrap/ModalTitle";
 import ModalBody from "react-bootstrap/ModalBody";
 import { useState } from "react";
 import { BsPencilSquare } from "react-icons/bs";
-import AddAssistantForm from "./AddAssistantForm";
+import EditAssistantForm from "./EditAssistantForm";
 
 function EditAssistant(props) {
   const [show, setShow] = useState(false);
+  const [userId, setUserId] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = (e) => {
-    console.log(e);
+    // console.log(e);
     setShow(true);
+    setUserId(e);
   };
 
   return (
@@ -22,7 +24,7 @@ function EditAssistant(props) {
       <Button
         variant="outline-success"
         onClick={(e) => {
-          handleShow(props.phone);
+          handleShow(props.id);
         }}
         // style={{ backgroundColor: "#1B7000" }}
       >
@@ -43,7 +45,7 @@ function EditAssistant(props) {
           <ModalTitle>Edit Assistant Profile</ModalTitle>
         </ModalHeader>
         <ModalBody>
-          <AddAssistantForm handleClose={handleClose} />
+          <EditAssistantForm userId={userId} handleClose={handleClose} />
         </ModalBody>
       </Modal>
     </>
