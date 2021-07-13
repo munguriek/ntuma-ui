@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 // import moment from "moment";
 
 const EditProductForm = (props) => {
+  const [prodId, setProdId] = useState("");
   const [product, setProduct] = useState({
     productName: "",
     productType: "",
@@ -41,9 +42,24 @@ const EditProductForm = (props) => {
   };
 
   useEffect(() => {
+    setProdId(props.prodId);
     axios.get("http://localhost:1200/product").then((res) => {
-      console.log(res.data);
-      setData(res.data);
+      // console.log(res.data);
+
+      for (let i = 0; i <= res.data.length; i++) {
+        if (res.data[i]?._id == props.prodId) {
+          //   console.log(props.userId);
+          console.log();
+          setData(res.data[i]);
+          setProduct({
+            productName: res.data[i].productName,
+            productType: res.data[i].productType,
+            price: res.data[i].price,
+            quantity: res.data[i].quantity,
+            image: res.data[i].image,
+          });
+        }
+      }
     });
   }, []);
 
