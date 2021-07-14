@@ -5,19 +5,24 @@ import MarketListToolbar from "src/components/market//MarketListToolbar";
 import MarketCard from "src/components/market//MarketCard";
 // import markets from 'src/__mocks__/markets'
 import axios from "axios";
-import '../App.css'
+import "../App.css";
 
 const MarketList = () => {
   const [data, setData] = useState([]);
-  
+
   useEffect(() => {
     // we must put the authorization bit in the headers in our axios methods to ensure security
-    axios.get("http://localhost:1200/add-market").then((res) => {
-      console.log(res.data);
-      setData(res.data);
-    });
+    console.log("useEffect");
+    axios
+      .get("http://localhost:1200/add-market")
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log({ message: err });
+      });
   }, []);
-  
 
   return (
     <>

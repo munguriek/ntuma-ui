@@ -1,0 +1,54 @@
+{data
+                      .slice(page * limit, page * limit + limit)
+                      .map((assistant) => (
+                        <TableRow hover key={assistant.phone}>
+                          <TableCell>
+                            <img
+                              src={assistant.profile_pic}
+                              alt={assistant.firstName}
+                              class="cover"
+                              width="200px"
+                              height="100px"
+                            />
+                          </TableCell>
+                          <TableCell>
+                            {assistant.firstName}
+                            {assistant.surName}
+                          </TableCell>
+                          <TableCell>{assistant.address}</TableCell>
+                          <TableCell>{assistant.phone}</TableCell>
+                          <TableCell>
+                            {moment(assistant.createdAt).format("DD/MM/YYYY")}
+                          </TableCell>
+                          <TableCell>
+                            <EditAssistant />
+                          </TableCell>
+                          <TableCell>
+                            <Switch
+                              inputProps={{ "aria-label": "primary checkbox" }}
+                            />
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    {/* this is basically to create empty rows in the last page incase the number of rows are less than the limit and is good for ui */}
+                    {emptyRows > 0 && (
+                      // so the emtpy rows take up the no. of rows emy times the pexels of the height = 53px
+                      <TableRow style={{ height: 53 * emptyRows }}>
+                        <TableCell colSpan={6} />
+                      </TableRow>
+                    )}
+                    {/* <Button
+                onClick={() => {
+                  axios.get("http://localhost:1200/assistants").then((res) => {
+                    setData((res) => {
+                      for (let assistant in res.data) {
+                        data = data.push(assistant);
+                      }
+                      return data;
+                    });
+                    console.log(res.data);
+                  });
+                }}
+              >
+                CLICK ME
+              </Button> */}

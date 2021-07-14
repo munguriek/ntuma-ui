@@ -4,22 +4,49 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const AddAssistantForm = (props) => {
+const EditAssistantForm = (props) => {
+  const [data, setData] = useState([]);
+  const [userId, setUserId] = useState("");
+
   const [assistant, setAssistant] = useState({
     firstName: "",
     surName: "",
-    gender: "",
+    // gender: "",
     phone: "",
     address: "",
     market: "",
-    refNumber: "",
+    // refNumber: "",
     profile_pic: "",
-    password: "",
-    confirm_password: "",
+    // password: "",
+    // confirm_password: "",
     email: "",
   });
+  console.log(assistant.firstName);
+  useEffect(() => {
+    setUserId(props.userId);
+
+    axios.get("http://localhost:1200/assistants").then((res) => {
+      //   console.log(res.data);
+      for (let i = 0; i <= res.data.length; i++) {
+        if (res.data[i]?._id == props.userId) {
+          //   console.log(props.userId);
+          console.log();
+          setData(res.data[i]);
+          setAssistant({
+            firstName: res.data[i].firstName,
+            surName: res.data[i].surName,
+            phone: res.data[i].phone,
+            address: res.data[i].address,
+            market: res.data[i].market,
+            profile_pic: res.data[i].profile_pic,
+            email: res.data[i].email,
+          });
+        }
+      }
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +59,7 @@ const AddAssistantForm = (props) => {
 
     console.log({ formData });
     console.log({ assistant });
+
     axios
       .post("http://localhost:1200/assistants", formData, { ...assistant })
       .then((res) => {
@@ -75,7 +103,7 @@ const AddAssistantForm = (props) => {
         </Col>
       </Form.Group>
 
-      <Form.Group as={Row} controlId="formGender">
+      {/* <Form.Group as={Row} controlId="formGender">
         <Form.Label column sm={3}>
           Select Gender:
         </Form.Label>
@@ -105,7 +133,7 @@ const AddAssistantForm = (props) => {
             />
           </Col>
         ))}
-      </Form.Group>
+      </Form.Group> */}
 
       <Form.Group as={Row} controlId="formPhone">
         <Form.Label column sm={3}>
@@ -156,7 +184,7 @@ const AddAssistantForm = (props) => {
         </Col>
       </Form.Group>
 
-      <Form.Group as={Row} controlId="formReferalNum">
+      {/* <Form.Group as={Row} controlId="formReferalNum">
         <Form.Label column sm={3}>
           Referal Number:
         </Form.Label>
@@ -169,7 +197,7 @@ const AddAssistantForm = (props) => {
             }}
           />
         </Col>
-      </Form.Group>
+      </Form.Group> */}
 
       <Form.Group as={Row} controlId="formProfilePhoto">
         <Form.Label column sm={3}>
@@ -187,7 +215,7 @@ const AddAssistantForm = (props) => {
         </Col>
       </Form.Group>
 
-      <Form.Group as={Row} controlId="formPassword">
+      {/* <Form.Group as={Row} controlId="formPassword">
         <Form.Label column sm={3}>
           Create Password:
         </Form.Label>
@@ -214,8 +242,8 @@ const AddAssistantForm = (props) => {
               setAssistant({ ...assistant, confirm_password: e.target.value });
             }}
           />
-        </Col>
-      </Form.Group>
+        </Col> */}
+      {/* </Form.Group> */}
 
       <Form.Group as={Row} controlId="formEmail">
         <Form.Label column sm={3}>
@@ -236,11 +264,11 @@ const AddAssistantForm = (props) => {
         <Col sm={{ span: 8, offset: 3 }}>
           <Button type="submit" style={{ backgroundColor: "#E78C06" }}>
             {" "}
-            Register{" "}
+            Update{" "}
           </Button>
         </Col>
       </Form.Group>
     </Form>
   );
 };
-export default AddAssistantForm;
+export default EditAssistantForm;

@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import React, { useState } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import * as Yup from "yup";
+import { Formik } from "formik";
+
 import {
   Box,
   Button,
@@ -14,13 +14,38 @@ import {
   TextField,
   Typography,
   Grid,
-} from '@material-ui/core';
-import axios from 'axios';
+} from "@material-ui/core";
+import axios from "axios";
 
 import { authenticate, isAuth } from '../helpers/auth';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Register = () => {
+  
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    phone: "",
+    password: "",
+    policy: false,
+  });
+
+  const addUser = () => {
+    axios
+      .post("http://localhost:1200/register", { ...user })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const manageSubmit = (e) => {
+    e.preventDefault();
+  };
+
   // const [user, setUser] = useState({
   //   firstName: "",
   //   lastName: "",
@@ -123,12 +148,12 @@ const Register = () => {
           toast.error("Please Fill all fields")
       }
   }
-  
+
   const navigate = useNavigate();
 
   const picture = {
-    imageUrl: '/static/images/loginPagePic.jpg',
-    name: 'Shop with Ntuma'
+    imageUrl: "/static/images/loginPagePic.jpg",
+    name: "Shop with Ntuma",
   };
 
   return (
@@ -365,12 +390,13 @@ const Register = () => {
                       <Checkbox
                         // checked={user.policy}
                         name="policy"
-                        // onChange={(
-                        //   handleChange,
-                        //   (e) => {
-                        //     setUser({ ...user, policy: e.target.checked });
-                        //   })
-                        // }
+                        onChange={
+                          (handleChange,
+                          (e) => {
+                            setUser({ ...user, policy: e.target.checked });
+                          })
+                        }
+
                       />
                       <Typography color="textSecondary" variant="body1">
                         I have read the{" "}

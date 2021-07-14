@@ -5,9 +5,10 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import moment from "moment";
+// import moment from "moment";
 
 const EditProductForm = (props) => {
+  const [prodId, setProdId] = useState("");
   const [product, setProduct] = useState({
     productName: "",
     productType: "",
@@ -16,7 +17,7 @@ const EditProductForm = (props) => {
     image: "",
   });
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   const addProduct = (e) => {
     e.preventDefault();
@@ -41,15 +42,30 @@ const EditProductForm = (props) => {
   };
 
   useEffect(() => {
+    setProdId(props.prodId);
     axios.get("http://localhost:1200/product").then((res) => {
-      console.log(res.data);
-      setData(res.data);
+      // console.log(res.data);
+
+      for (let i = 0; i <= res.data.length; i++) {
+        if (res.data[i]?._id == props.prodId) {
+          //   console.log(props.userId);
+          console.log();
+          setData(res.data[i]);
+          setProduct({
+            productName: res.data[i].productName,
+            productType: res.data[i].productType,
+            price: res.data[i].price,
+            quantity: res.data[i].quantity,
+            image: res.data[i].image,
+          });
+        }
+      }
     });
   }, []);
 
   return (
     <Form onSubmit={addProduct}>
-    {/* {data.slice(0, limit).map((product) =>( */}
+      {/* {data.slice(0, limit).map((product) =>( */}
       <Form.Group as={Row} controlId="formHorizontalName">
         <Form.Label column sm={2}>
           Name:
@@ -138,7 +154,6 @@ const EditProductForm = (props) => {
           </Button>
         </Col>
       </Form.Group>
-    
     </Form>
   );
 };
