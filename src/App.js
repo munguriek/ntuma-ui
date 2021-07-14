@@ -5,6 +5,7 @@ import GlobalStyles from 'src/components/GlobalStyles';
 import 'src/mixins/chartjs';
 import theme from 'src/theme';
 import routes from 'src/routes';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const routing = useRoutes(routes);
