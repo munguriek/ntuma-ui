@@ -74,7 +74,7 @@ const AssistantList = (...rest) => {
                       <TableCell> Market </TableCell>
                       <TableCell> Phone </TableCell>
                       <TableCell> Registration date </TableCell>
-                      <TableCell> Edit Assistant </TableCell>
+                      <TableCell> View Assistant </TableCell>
                       <TableCell> Deactivate </TableCell>
                     </TableRow>
                   </TableHead>
@@ -96,9 +96,10 @@ const AssistantList = (...rest) => {
                           </TableCell>
                           <TableCell>
                             {assistant.firstName}
+                            <br />
                             {assistant.surName}
                           </TableCell>
-                          <TableCell>{assistant.address}</TableCell>
+                          <TableCell>{assistant.market}</TableCell>
                           <TableCell>{assistant.phone}</TableCell>
                           <TableCell>
                             {moment(assistant.createdAt).format("DD/MM/YYYY")}

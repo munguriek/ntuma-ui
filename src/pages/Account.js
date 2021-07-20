@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Box, Container, Grid } from "@material-ui/core";
-// import AccountProfilePictureCard from 'src/components/account/AccountProfilePictureCard';
+// import AccountProfilePictureCard from "src/components/account/AccountProfilePictureCard";
 import AccountProfileDetailsCard from "src/components/account/AccountProfileDetailsCard";
 import axios from "axios";
 

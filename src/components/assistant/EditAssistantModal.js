@@ -5,7 +5,7 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalTitle from "react-bootstrap/ModalTitle";
 import ModalBody from "react-bootstrap/ModalBody";
 import { useState } from "react";
-import { BsPencilSquare } from "react-icons/bs";
+import { BsPencilSquare, BsEye } from "react-icons/bs";
 import EditAssistantForm from "./EditAssistantForm";
 
 function EditAssistant(props) {
@@ -28,7 +28,7 @@ function EditAssistant(props) {
         }}
         // style={{ backgroundColor: "#1B7000" }}
       >
-        <BsPencilSquare /> Edit
+        <BsEye /> View
       </Button>
 
       <Modal

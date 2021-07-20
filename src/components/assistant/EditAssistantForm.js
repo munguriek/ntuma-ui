@@ -5,6 +5,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Select, InputLabel, MenuItem, TextField } from "@material-ui/core";
+import { BsCheckCircle, BsDownload } from "react-icons/bs";
 
 const EditAssistantForm = (props) => {
   const [data, setData] = useState([]);
@@ -13,15 +15,16 @@ const EditAssistantForm = (props) => {
   const [assistant, setAssistant] = useState({
     firstName: "",
     surName: "",
-    // gender: "",
+    gender: "",
     phone: "",
     address: "",
     market: "",
-    // refNumber: "",
+    refNumber: "",
     profile_pic: "",
-    // password: "",
-    // confirm_password: "",
-    email: "",
+    password: "",
+    dob: "",
+    nin: "",
+    natid: "",
   });
   console.log(assistant.firstName);
   useEffect(() => {
@@ -37,11 +40,16 @@ const EditAssistantForm = (props) => {
           setAssistant({
             firstName: res.data[i].firstName,
             surName: res.data[i].surName,
+            gender: res.data[i].gender,
             phone: res.data[i].phone,
             address: res.data[i].address,
             market: res.data[i].market,
+            refNumber: res.data[i].refNumber,
             profile_pic: res.data[i].profile_pic,
-            email: res.data[i].email,
+            password: res.data[i].password,
+            dob: res.data[i].dob,
+            nin: res.data[i].nin,
+            natid: res.data[i].natid,
           });
         }
       }
@@ -87,7 +95,6 @@ const EditAssistantForm = (props) => {
           />
         </Col>
       </Form.Group>
-
       <Form.Group as={Row} controlId="formSurname">
         <Form.Label column sm={3}>
           Surname:
@@ -102,39 +109,33 @@ const EditAssistantForm = (props) => {
           />
         </Col>
       </Form.Group>
-
-      {/* <Form.Group as={Row} controlId="formGender">
+      <Form.Group as={Row} controlId="formGender">
         <Form.Label column sm={3}>
-          Select Gender:
+          Gender:
         </Form.Label>
-        {["radio"].map((type) => (
-          <Col key={`inline-${type}`} sm={8}>
-            <Form.Check
-              inline
-              label="Male"
-              name="gender"
-              type={type}
-              id={`inline-${type}-Male`}
-              value={assistant.gender}
-              onChange={(e) => {
-                setAssistant({ ...assistant, gender: e.target.value });
-              }}
-            />
-            <Form.Check
-              inline
-              label="Female"
-              name="gender"
-              type={type}
-              id={`inline-${type}-Female`}
-              value={assistant.gender}
-              onChange={(e) => {
-                setAssistant({ ...assistant, gender: e.target.value });
-              }}
-            />
-          </Col>
-        ))}
-      </Form.Group> */}
+        <Col sm={8}>
+          <InputLabel id="label"></InputLabel>
 
+          <Select labelId="label" id="select" value="">
+            <MenuItem
+              value={assistant.gender}
+              onChange={(e) => {
+                setAssistant({ ...assistant, gender: e.target.value });
+              }}
+            >
+              Male
+            </MenuItem>
+            <MenuItem
+              value={assistant.gender}
+              onChange={(e) => {
+                setAssistant({ ...assistant, gender: e.target.value });
+              }}
+            >
+              Female
+            </MenuItem>
+          </Select>
+        </Col>
+      </Form.Group>{" "}
       <Form.Group as={Row} controlId="formPhone">
         <Form.Label column sm={3}>
           Phone Number:
@@ -149,7 +150,6 @@ const EditAssistantForm = (props) => {
           />
         </Col>
       </Form.Group>
-
       <Form.Group as={Row} controlId="formAddress">
         <Form.Label column sm={3}>
           Home Address:
@@ -164,27 +164,50 @@ const EditAssistantForm = (props) => {
           />
         </Col>
       </Form.Group>
-
       <Form.Group as={Row} controlId="formMarket">
         <Form.Label column sm={3}>
-          Select Market:
+          Market:
         </Form.Label>
         <Col sm={8}>
-          <Form.Control as="select">
-            <option>Gabba</option>
-            <option>Nakasero</option>
-            <option>Kikubo</option>
-            <option>Owino</option>
-            value={assistant.market}
-            onChange=
-            {(e) => {
-              setAssistant({ ...assistant, market: e.target.value });
-            }}
-          </Form.Control>
-        </Col>
-      </Form.Group>
+          <InputLabel id="label"></InputLabel>
 
-      {/* <Form.Group as={Row} controlId="formReferalNum">
+          <Select labelId="label" id="select" value="">
+            <MenuItem
+              value={assistant.market}
+              onChange={(e) => {
+                setAssistant({ ...assistant, market: e.target.value });
+              }}
+            >
+              Gabba
+            </MenuItem>
+            <MenuItem
+              value={assistant.market}
+              onChange={(e) => {
+                setAssistant({ ...assistant, market: e.target.value });
+              }}
+            >
+              Nakasero
+            </MenuItem>
+            <MenuItem
+              value={assistant.market}
+              onChange={(e) => {
+                setAssistant({ ...assistant, market: e.target.value });
+              }}
+            >
+              Kikubo
+            </MenuItem>
+            <MenuItem
+              value={assistant.market}
+              onChange={(e) => {
+                setAssistant({ ...assistant, market: e.target.value });
+              }}
+            >
+              Owino
+            </MenuItem>
+          </Select>
+        </Col>
+      </Form.Group>{" "}
+      <Form.Group as={Row} controlId="formReferalNum">
         <Form.Label column sm={3}>
           Referal Number:
         </Form.Label>
@@ -197,8 +220,7 @@ const EditAssistantForm = (props) => {
             }}
           />
         </Col>
-      </Form.Group> */}
-
+      </Form.Group>
       <Form.Group as={Row} controlId="formProfilePhoto">
         <Form.Label column sm={3}>
           Profile Photo:
@@ -214,10 +236,9 @@ const EditAssistantForm = (props) => {
           />
         </Col>
       </Form.Group>
-
-      {/* <Form.Group as={Row} controlId="formPassword">
+      <Form.Group as={Row} controlId="formPassword">
         <Form.Label column sm={3}>
-          Create Password:
+          Password:
         </Form.Label>
         <Col sm={8}>
           <Form.Control
@@ -229,39 +250,68 @@ const EditAssistantForm = (props) => {
           />
         </Col>
       </Form.Group>
-
-      <Form.Group as={Row} controlId="formPassword">
+      <Form.Group as={Row} controlId="formDOB">
         <Form.Label column sm={3}>
-          Confirm Password:
+          Date of Birth:
+        </Form.Label>
+        <Col sm={8}>
+          <Form noValidate>
+            <TextField
+              id="date"
+              label="Birthdate"
+              type="date"
+              value={assistant.dob}
+              onChange={(e) => {
+                setAssistant({
+                  ...assistant,
+                  dob: e.target.value,
+                });
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Form>
+        </Col>
+      </Form.Group>
+      <Form.Group as={Row} controlId="formFirstName">
+        <Form.Label column sm={3}>
+          National ID Number:
         </Form.Label>
         <Col sm={8}>
           <Form.Control
-            type="password"
-            value={assistant.confirm_password}
+            type="text"
+            value={assistant.nin}
             onChange={(e) => {
-              setAssistant({ ...assistant, confirm_password: e.target.value });
-            }}
-          />
-        </Col> */}
-      {/* </Form.Group> */}
-
-      <Form.Group as={Row} controlId="formEmail">
-        <Form.Label column sm={3}>
-          Email:
-        </Form.Label>
-        <Col sm={8}>
-          <Form.Control
-            type="email"
-            value={assistant.email}
-            onChange={(e) => {
-              setAssistant({ ...assistant, email: e.target.value });
+              setAssistant({ ...assistant, nin: e.target.value });
             }}
           />
         </Col>
       </Form.Group>
-
+      <Form.Group as={Row} controlId="formNatid">
+        <Form.Label column sm={3}>
+          National ID Attachment:
+        </Form.Label>
+        <Col sm={8}>
+          <Form.File
+            id="custom-file"
+            label="Upload your National ID here"
+            custom
+            onChange={(e) => {
+              setAssistant({ ...assistant, natid: e.target.files[0] });
+            }}
+          />
+          <BsDownload />
+        </Col>
+      </Form.Group>
       <Form.Group as={Row}>
-        <Col sm={{ span: 8, offset: 3 }}>
+        <Col sm={{ span: 4, offset: 3 }}>
+          <Button type="submit" style={{ backgroundColor: "#E78C06" }}>
+            {" "}
+            <BsCheckCircle /> Verify{" "}
+          </Button>
+        </Col>
+        <Col sm={{ span: 8, offset: 6 }}>
           <Button type="submit" style={{ backgroundColor: "#E78C06" }}>
             {" "}
             Update{" "}
