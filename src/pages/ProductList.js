@@ -122,7 +122,7 @@ const ProductList = () => {
                         {moment(product.createdAt).format("DD/MM/YYYY")}
                       </TableCell>
                       <TableCell>
-                        <EditProduct id={product._id} />
+                        <EditProduct />
                       </TableCell>
                       <TableCell>
                         <Switch
