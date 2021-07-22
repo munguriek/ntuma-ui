@@ -24,7 +24,7 @@ const EditAssistantForm = (props) => {
     password: "",
     dob: "",
     nin: "",
-    natid: "",
+    // natid: "",
   });
   console.log(assistant.firstName);
   useEffect(() => {
@@ -288,7 +288,7 @@ const EditAssistantForm = (props) => {
           />
         </Col>
       </Form.Group>
-      <Form.Group as={Row} controlId="formNatid">
+      {/* <Form.Group as={Row} controlId="formNatid">
         <Form.Label column sm={3}>
           National ID Attachment:
         </Form.Label>
@@ -303,7 +303,7 @@ const EditAssistantForm = (props) => {
           />
           <BsDownload />
         </Col>
-      </Form.Group>
+      </Form.Group> */}
       <Form.Group as={Row}>
         <Col sm={{ span: 4, offset: 3 }}>
           <Button type="submit" style={{ backgroundColor: "#E78C06" }}>

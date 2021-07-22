@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useState } from "react";
 import { Select, InputLabel, MenuItem, TextField } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 
 const AddAssistantForm = (props) => {
   const [assistant, setAssistant] = useState({
@@ -21,8 +22,10 @@ const AddAssistantForm = (props) => {
     confirm_password: "",
     dob: "",
     nin: "",
-    natid: "",
+    // natid: "",
   });
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -266,7 +269,7 @@ const AddAssistantForm = (props) => {
           />
         </Col>
       </Form.Group>
-      <Form.Group as={Row} controlId="formNatid">
+      {/* <Form.Group as={Row} controlId="formNatid">
         <Form.Label column sm={3}>
           National ID Attachment:
         </Form.Label>
@@ -280,10 +283,16 @@ const AddAssistantForm = (props) => {
             }}
           />
         </Col>
-      </Form.Group>
+      </Form.Group> */}
       <Form.Group as={Row}>
         <Col sm={{ span: 8, offset: 3 }}>
-          <Button type="submit" style={{ backgroundColor: "#E78C06" }}>
+          <Button
+            type="submit"
+            style={{ backgroundColor: "#E78C06" }}
+            onClick={() => {
+              navigate("/app/assistants");
+            }}
+          >
             {" "}
             Register{" "}
           </Button>

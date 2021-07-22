@@ -15,6 +15,8 @@ import {
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 // const products = [
 //   {
@@ -51,75 +53,76 @@ import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 //   },
 // ];
 
-const [data, setData] = useState([]);
-useEffect(() => {
-  axios
-    .get("http://localhost:1200/product")
-    .then((res) => {
-      console.log(res.data);
-      setData(res.data);
-    })
-    .catch((err) => {
-      console.log({ message: err });
-    });
-}, []);
-
 // git revert ssh key but after doing a git log
-const ProductPriceList = (props) => (
-  <Card {...props}>
-    <CardHeader
-      subtitle={`${products.length} in total`}
-      title="Product Price List"
-    />
-    <Divider />
-    <List>
-      {data.map((product, i) => (
-        <ListItem divider={i < data.length - 1} key={product.id}>
-          <ListItemAvatar>
-            <img
-              alt={product.productName}
-              src={product.image}
-              style={{
-                height: 48,
-                width: 48,
-              }}
-            />
-          </ListItemAvatar>
-          <ListItemText
-            primary={product.productName}
-            secondary={
-              <div>
+const ProductPriceList = (props) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:1200/product")
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log({ message: err });
+      });
+  }, []);
+  return (
+    <Card {...props}>
+      <CardHeader
+        subtitle={`${data.length} in total`}
+        title="Product Price List"
+      />
+      <Divider />
+      <List>
+        {data.map((product, i) => (
+          <ListItem divider={i < data.length - 1} key={product.id}>
+            <ListItemAvatar>
+              <img
+                alt={product.productName}
+                src={product.image}
+                style={{
+                  height: 48,
+                  width: 48,
+                }}
+              />
+            </ListItemAvatar>
+            <ListItemText
+              primary={product.productName}
+              secondary={
                 <div>
-                  {product.price} ugx per {product.quantity}
+                  <div>
+                    {product.price} ugx per {product.quantity}
+                  </div>
+                  {/* <div>Updated {product.updatedAt.fromNow()}</div> */}
                 </div>
-                <div>Updated {product.updatedAt.fromNow()}</div>
-              </div>
-            }
-          />
-          <IconButton edge="end" size="small">
-            <MoreVertIcon />
-          </IconButton>
-        </ListItem>
-      ))}
-    </List>
-    <Divider />
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "flex-end",
-        p: 2,
-      }}
-    >
-      <Button
-        color="primary"
-        endIcon={<ArrowRightIcon />}
-        size="small"
-        variant="text"
+              }
+            />
+            <IconButton edge="end" size="small">
+              <MoreVertIcon />
+            </IconButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          p: 2,
+        }}
       >
-        View all
-      </Button>
-    </Box>
-  </Card>
-);
+        <Button
+          color="primary"
+          endIcon={<ArrowRightIcon />}
+          size="small"
+          variant="text"
+        >
+          View all
+        </Button>
+      </Box>
+    </Card>
+  );
+};
 
 export default ProductPriceList;
